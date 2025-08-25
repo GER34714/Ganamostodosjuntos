@@ -37,7 +37,7 @@
       min-height: 100vh;
       display:flex;
       flex-direction:column;
-      justify-content:center;
+      justify-content:flex-start;
       align-items:center;
       padding:2rem;
     }
@@ -45,22 +45,18 @@
       font-size: clamp(2.5rem,6vw,4.5rem);
       color: var(--dorado);
       text-shadow:0 0 15px var(--violeta),0 0 30px var(--dorado);
-      margin-bottom:0.5rem;
-    }
-    h2 {
-      font-size: clamp(1.3rem,3vw,2rem);
-      margin-bottom:1.5rem;
-      color: #fff;
-      text-shadow: 0 0 8px rgba(0,0,0,0.8);
+      margin-top:1rem;
+      margin-bottom:1rem;
     }
     p {
       font-size: clamp(1rem,2vw,1.5rem);
-      margin-bottom:2rem;
+      margin:1rem 0 1rem 0;
+      line-height:1.5;
     }
     #contador {
       font-size: 1.2rem;
       font-weight: bold;
-      margin-bottom: 2rem;
+      margin: 1rem 0 2rem 0;
       color: var(--dorado);
       text-shadow: 0 0 10px var(--violeta);
     }
@@ -70,6 +66,7 @@
       gap:1rem;
       align-items:center;
       margin-bottom:2rem;
+      margin-top:auto;
     }
     .btn {
       display:inline-flex;
@@ -107,16 +104,20 @@
   <!-- End Google Tag Manager (noscript) -->
 
   <div class="overlay">
+    <!-- Título arriba -->
     <h1>FortunaPlay 🎰</h1>
-    <h2>✨ Tu lugar de suerte, diversión y grandes premios 💸🔥</h2>
 
+    <!-- Texto descriptivo en el medio -->
     <p>
+      ✨ Tu lugar de suerte, diversión y grandes premios 💸🔥<br>
       👉 Te creamos el usuario <strong>al instante</strong><br>
       🚀 ¿Te lo vas a perder?
     </p>
 
+    <!-- Contador dinámico -->
     <div id="contador">Actualmente hay 0 jugadores conectados 🎲</div>
 
+    <!-- Botones abajo -->
     <div class="button-group">
       <button class="btn" id="btn-usuario">
         <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
@@ -131,6 +132,7 @@
   </div>
 
   <script>
+    // Rotador de WhatsApp
     const WHATS_LINES = [
       {num:'5491171334027', msgUsuario:'Hola martin, me creas un usuario?', msgDudas:'Me das más info?'},
       {num:'5491156349123', msgUsuario:'Hola lucas, me creas un usuario?', msgDudas:'Me das más info?'},
@@ -155,6 +157,10 @@
       const url=`https://wa.me/${line.num}?text=${encodeURIComponent(msg)}`;
       const w=window.open(url,'_blank','noopener');
       if(!w) location.href=url;
+
+      // Tracking para GTM
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({'event': type==='usuario'?'click_usuario':'click_dudas'});
     }
 
     document.getElementById('btn-usuario').addEventListener('click',()=>openWhatsApp('usuario'));
