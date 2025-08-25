@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fortuna Play 🎰</title>
-  <meta name="description" content="Fortuna Play - Tu usuario al instante. ¡Sumate a la diversión ahora!">
+  <title>FortunaPlay 🎰</title>
+  <meta name="description" content="🎰 FortunaPlay - Tu nueva experiencia de juego online. Unite y participá con nosotros por premios increíbles.">
 
   <!-- Google Tag Manager -->
   <script>
@@ -17,56 +17,84 @@
   <!-- End Google Tag Manager -->
 
   <style>
-    /* Fondo con efecto casino */
+    :root {
+      --verde: #25D366;
+      --verde-oscuro: #128C7E;
+      --dorado: #FFD700;
+      --violeta: #7d2ae8;
+    }
+    *{box-sizing:border-box;}
     body {
-      margin: 0;
+      margin:0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+      background: url('https://iili.io/KJmu0S2.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: #fff;
       text-align: center;
     }
-
     .overlay {
-      padding: 60px 20px;
+      background: rgba(0,0,0,0.75);
+      min-height: 100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      padding:2rem;
     }
-
     h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-      color: #ffd700; /* dorado */
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+      font-size: clamp(2.5rem,6vw,4.5rem);
+      color: var(--dorado);
+      text-shadow:0 0 15px var(--violeta),0 0 30px var(--dorado);
+      margin-bottom:0.5rem;
     }
-
-    p {
-      font-size: 1.3rem;
-      margin-bottom: 30px;
-      line-height: 1.6;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 14px 26px;
-      margin: 10px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.2rem;
+    h2 {
+      font-size: clamp(1.3rem,3vw,2rem);
+      margin-bottom:1.5rem;
       color: #fff;
-      background: #28a745; /* verde más amigable */
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      text-shadow: 0 0 8px rgba(0,0,0,0.8);
     }
-
+    p {
+      font-size: clamp(1rem,2vw,1.5rem);
+      margin-bottom:2rem;
+    }
+    #contador {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      color: var(--dorado);
+      text-shadow: 0 0 10px var(--violeta);
+    }
+    .button-group{
+      display:flex;
+      flex-direction:column;
+      gap:1rem;
+      align-items:center;
+      margin-bottom:2rem;
+    }
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      gap:0.6rem;
+      padding:1rem 2rem;
+      border:none;
+      border-radius:50px;
+      font-size:1.1rem;
+      font-weight:bold;
+      color:#fff;
+      background: linear-gradient(135deg, var(--verde-oscuro), var(--verde));
+      cursor:pointer;
+      text-decoration:none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-align:center;
+    }
     .btn:hover {
       transform: scale(1.05);
-      box-shadow: 0 6px 14px rgba(0,0,0,0.6);
-      background: #218838; /* verde más oscuro */
+      box-shadow:0 6px 18px rgba(0,0,0,0.6);
     }
-
-    footer {
-      margin-top: 60px;
-      font-size: 0.9rem;
-      opacity: 0.7;
+    .btn img{
+      width:24px;
+      height:24px;
     }
   </style>
 </head>
@@ -79,24 +107,68 @@
   <!-- End Google Tag Manager (noscript) -->
 
   <div class="overlay">
-    <h1>Fortuna Play 🎰</h1>
+    <h1>FortunaPlay 🎰</h1>
+    <h2>✨ Tu lugar de suerte, diversión y grandes premios 💸🔥</h2>
+
     <p>
-      ✨ ¡Te creamos el usuario al instante!<br>
-      🎯 ¿Te lo vas a perder?<br>
-      💎 Sumate a la diversión y jugá donde juegan los grandes.
+      👉 Te creamos el usuario <strong>al instante</strong><br>
+      🚀 ¿Te lo vas a perder?
     </p>
 
-    <!-- Botones WhatsApp -->
-    <a href="https://wa.me/5491123456789?text=Hola%20FACU%20me%20creas%20un%20usuario%20porfa%3F%20Mi%20nombre%20es%3A" class="btn">
-      📲 Pedir Usuario
-    </a>
-    <a href="https://wa.me/5491123456789?text=Quiero%20saber%20más%20info%20sobre%20Fortuna%20Play" class="btn">
-      ℹ️ Más Información
-    </a>
+    <div id="contador">Actualmente hay 0 jugadores conectados 🎲</div>
+
+    <div class="button-group">
+      <button class="btn" id="btn-usuario">
+        <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
+        Quiero mi usuario
+      </button>
+
+      <button class="btn" id="btn-dudas">
+        <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
+        DUDAS? ESCRIBINOS…<br>Estamos para ayudarte
+      </button>
+    </div>
   </div>
 
-  <footer>
-    © 2025 Fortuna Play - Todos los derechos reservados.
-  </footer>
+  <script>
+    const WHATS_LINES = [
+      {num:'5491171334027', msgUsuario:'Hola martin, me creas un usuario?', msgDudas:'Me das más info?'},
+      {num:'5491156349123', msgUsuario:'Hola lucas, me creas un usuario?', msgDudas:'Me das más info?'},
+      {num:'5491173566830', msgUsuario:'Hola cami, me creas un usuario?', msgDudas:'Me das más info?'},
+      {num:'5491125127839', msgUsuario:'Hola octavio, me creas un usuario?', msgDudas:'Me das más info?'},
+      {num:'5491123365501', msgUsuario:'hola facu, me podes crear un usuario porfa?', msgDudas:'Me das más info?'},
+      {num:'5491125127839', msgUsuario:'hola me creas un usuario? 🤚🍀', msgDudas:'Me das más info?'}
+    ];
+
+    function nextIndex(){
+      const key='waIndex';
+      const current=parseInt(localStorage.getItem(key)||'-1',10);
+      const next=(isNaN(current)?0:(current+1)%WHATS_LINES.length);
+      localStorage.setItem(key,String(next));
+      return next;
+    }
+
+    function openWhatsApp(type){
+      const idx = nextIndex();
+      const line = WHATS_LINES[idx];
+      let msg = type==='usuario' ? line.msgUsuario : line.msgDudas;
+      const url=`https://wa.me/${line.num}?text=${encodeURIComponent(msg)}`;
+      const w=window.open(url,'_blank','noopener');
+      if(!w) location.href=url;
+    }
+
+    document.getElementById('btn-usuario').addEventListener('click',()=>openWhatsApp('usuario'));
+    document.getElementById('btn-dudas').addEventListener('click',()=>openWhatsApp('dudas'));
+
+    // Contador dinámico
+    function actualizarContador(){
+      const base = 230;
+      const variacion = Math.floor(Math.random()*40);
+      const total = base + variacion;
+      document.getElementById("contador").innerText = `Actualmente hay ${total} jugadores conectados 🎲`;
+    }
+    actualizarContador();
+    setInterval(actualizarContador, 5000);
+  </script>
 </body>
 </html>
