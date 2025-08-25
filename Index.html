@@ -1,139 +1,103 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>GANAMOS TODOS JUNTOS</title>
-  <meta name="description" content="Landing imponente con botón de WhatsApp que rota entre 6 líneas. Publicala en grupos y reels para máxima exposición." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GANAMOS TODOS JUNTOS</title>
+<meta name="description" content="Landing imponente con botón de WhatsApp que rota entre 6 líneas.">
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="es_LA" />
-  <meta property="og:title" content="GANAMOS TODOS JUNTOS" />
-  <meta property="og:description" content="Tocá el botón y hablá por WhatsApp. El sistema rota entre 6 números para responderte más rápido." />
-  <meta property="og:image" content="https://iili.io/KJi1nUB.md.jpg" />
-  <meta property="og:url" content="https://tu-dominio.com/" />
+<!-- Open Graph -->
+<meta property="og:title" content="GANAMOS TODOS JUNTOS">
+<meta property="og:description" content="Tocá el botón y hablá por WhatsApp. Rotación entre 6 números.">
+<meta property="og:image" content="https://iili.io/KJi1nUB.md.jpg">
+<meta property="og:url" content="https://tu-dominio.com/">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="GANAMOS TODOS JUNTOS" />
-  <meta name="twitter:description" content="Botón de WhatsApp con rotación de 6 líneas. Ultra liviano y listo para viralizar." />
-  <meta name="twitter:image" content="https://iili.io/KJi1nUB.md.jpg" />
+<style>
+:root{
+  --violeta:#6a00ff; --rosa:#ff00de; --cian:#00f5ff; --txt:#fff;
+}
+*{box-sizing:border-box;}
+html, body{height:100%; margin:0; font-family:Arial,sans-serif; color:var(--txt);}
+body{
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center;
+  background:url('https://iili.io/KJi1nUB.md.jpg') no-repeat center center fixed;
+  background-size:cover;
+}
+h1{
+  font-size:clamp(28px,8vw,72px);
+  font-weight:900;
+  margin:0 0 16px;
+  text-transform:uppercase;
+  text-shadow:0 0 6px var(--rosa),0 0 12px var(--rosa),0 0 24px var(--rosa),0 0 48px var(--rosa);
+  animation:neon-flicker 1.6s infinite alternate;
+}
+p{subfont-size:clamp(14px,2.8vw,18px); margin:0 0 22px; text-shadow:0 1px 10px rgba(0,0,0,.65); opacity:.95;}
 
-  <style>
-    :root{
-      --violeta: #6a00ff;
-      --rosa: #ff00de;
-      --cian: #00f5ff;
-      --txt: #fff;
-    }
-    *, *::before, *::after{ box-sizing: border-box; }
-    html, body { height: 100%; margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color: var(--txt);}
-    body{
-      display:grid; place-items:center; text-align:center;
-      background: url('https://iili.io/KJi1nUB.md.jpg') no-repeat center center fixed;
-      background-size: cover;
-    }
+.btn{
+  appearance:none; border:none; cursor:pointer;
+  padding:14px 22px; border-radius:999px; font-weight:900; font-size:clamp(14px,3.6vw,18px);
+  color:#0a0a0a; background:linear-gradient(180deg,#ffe29a,#ffb703);
+  box-shadow:0 0 14px var(--cian), inset 0 0 10px var(--cian);
+  transition:transform .12s ease, filter .2s ease, box-shadow .2s ease;
+  animation:neon-btn 2s infinite alternate;
+}
+.btn:hover{transform:translateY(-2px); filter:saturate(1.1); box-shadow:0 0 22px var(--rosa), inset 0 0 16px var(--rosa);}
+.btn:active{transform:scale(.98);}
+.fixed-bottom{
+  position:fixed; bottom:10px; left:50%; transform:translateX(-50%); z-index:999;
+}
 
-    h1{
-      margin:0 0 16px;
-      font-weight:900;
-      font-size: clamp(28px,8vw,72px);
-      text-transform: uppercase;
-      text-shadow:
-        0 0 6px var(--rosa),
-        0 0 12px var(--rosa),
-        0 0 24px var(--rosa),
-        0 0 48px var(--rosa);
-      animation: neon-flicker 1.6s infinite alternate;
-    }
-    p.sub{
-      margin:0 0 22px;
-      font-size: clamp(14px,2.8vw,18px);
-      text-shadow: 0 1px 10px rgba(0,0,0,.65);
-      opacity:.95;
-    }
-
-    .cta{
-      display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
-    }
-    .btn{
-      appearance:none; border:0; cursor:pointer;
-      padding: 14px 22px; border-radius: 999px; font-weight: 900;
-      font-size: clamp(14px, 3.6vw, 18px); color:#0a0a0a;
-      text-decoration:none; display:inline-flex; align-items:center; gap:10px;
-      background: linear-gradient(180deg, #ffe29a, #ffb703);
-      box-shadow: 0 0 14px var(--cian), inset 0 0 10px var(--cian);
-      transition: transform .12s ease, filter .2s ease, box-shadow .2s ease;
-      animation: neon-btn 2s infinite alternate;
-    }
-    .btn:hover{ transform: translateY(-2px); filter: saturate(1.1); box-shadow: 0 0 22px var(--rosa), inset 0 0 16px var(--rosa); }
-    .btn:active{ transform: translateY(0) scale(.98); }
-
-    .fixed-bottom{
-      position: fixed;
-      bottom:10px;
-      left:50%;
-      transform: translateX(-50%);
-      z-index:999;
-    }
-
-    @keyframes neon-flicker{
-      0%,19%,21%,23%,25%,54%,56%,100%{ opacity:1; }
-      20%,24%,55%{ opacity:.9; }
-    }
-    @keyframes neon-btn{
-      0%{ box-shadow: 0 0 10px var(--cian), inset 0 0 8px var(--cian); }
-      50%{ box-shadow: 0 0 20px var(--rosa), inset 0 0 14px var(--rosa); }
-      100%{ box-shadow: 0 0 14px var(--cian), inset 0 0 10px var(--cian); }
-    }
-    @media (max-width:480px){ .glow-wrap{padding:16px;} }
-    @media (prefers-reduced-motion:reduce){ h1,.btn{ animation:none;} }
-  </style>
+@keyframes neon-flicker{
+  0%,19%,21%,23%,25%,54%,56%,100%{opacity:1;}
+  20%,24%,55%{opacity:.9;}
+}
+@keyframes neon-btn{
+  0%{box-shadow:0 0 10px var(--cian), inset 0 0 8px var(--cian);}
+  50%{box-shadow:0 0 20px var(--rosa), inset 0 0 14px var(--rosa);}
+  100%{box-shadow:0 0 14px var(--cian), inset 0 0 10px var(--cian);}
+}
+</style>
 </head>
 <body>
-  <main class="glow-wrap" role="main" aria-label="Landing principal">
-    <h1>GANAMOS TODOS JUNTOS</h1>
-    <p class="sub">Hacé clic y hablá por WhatsApp. Rotamos entre 6 líneas para responderte más rápido.</p>
-    <div class="cta">
-      <button id="btn-whatsapp" class="btn" aria-label="Hablar por WhatsApp">💬 Hablar por WhatsApp</button>
-    </div>
-  </main>
+<h1>GANAMOS TODOS JUNTOS</h1>
+<p class="sub">Hacé clic y hablá por WhatsApp. Rotamos entre 6 líneas.</p>
+<button class="btn" id="btn-whatsapp">💬 WhatsApp</button>
 
-  <!-- Botón fijo en móviles -->
-  <div class="fixed-bottom">
-    <button id="btn-whatsapp-bottom" class="btn">💬 WhatsApp</button>
-  </div>
+<div class="fixed-bottom">
+  <button class="btn" id="btn-whatsapp-bottom">💬 WhatsApp</button>
+</div>
 
-  <script>
-    const WHATS_LINES = [
-      { num: '5491132525913', msg: 'Hola martin, me creas un usuario?' },
-      { num: '5491171334027', msg: 'Hola lucas, me creas un usuario?' },
-      { num: '5491156349123', msg: 'Hola cami, me creas un usuario?' },
-      { num: '5491173566830', msg: 'Hola octavio, me creas un usuario?' },
-      { num: '5491125127839', msg: 'hola facu, me podes crear un usuario porfa?' },
-      { num: '5491123365501', msg: 'hola me creas un usuario? 🤚🍀' }
-    ];
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const WHATS_LINES = [
+    { num:'5491132525913', msg:'Hola martin, me creas un usuario?' },
+    { num:'5491171334027', msg:'Hola lucas, me creas un usuario?' },
+    { num:'5491156349123', msg:'Hola cami, me creas un usuario?' },
+    { num:'5491173566830', msg:'Hola octavio, me creas un usuario?' },
+    { num:'5491125127839', msg:'hola facu, me podes crear un usuario porfa?' },
+    { num:'5491123365501', msg:'hola me creas un usuario? 🤚🍀' }
+  ];
 
-    function nextIndex(){
-      const key = 'waIndex';
-      const current = parseInt(localStorage.getItem(key)||'-1',10);
-      const next = (isNaN(current)?0:(current+1)%WHATS_LINES.length);
-      localStorage.setItem(key,String(next));
-      return next;
-    }
+  function nextIndex(){
+    const key='waIndex';
+    const current=parseInt(localStorage.getItem(key)||'-1',10);
+    const next=(isNaN(current)?0:(current+1)%WHATS_LINES.length);
+    localStorage.setItem(key,String(next));
+    return next;
+  }
 
-    function openWhatsApp(){
-      const idx = nextIndex();
-      const {num,msg}=WHATS_LINES[idx];
-      const url = `https://wa.me/${num}?text=${encodeURIComponent(msg)}`;
-      const w = window.open(url,'_blank','noopener');
-      if(!w) location.href=url;
-    }
+  function openWhatsApp(){
+    const idx=nextIndex();
+    const {num,msg}=WHATS_LINES[idx];
+    const url=`https://wa.me/${num}?text=${encodeURIComponent(msg)}`;
+    const w=window.open(url,'_blank','noopener');
+    if(!w) location.href=url;
+  }
 
-    document.getElementById('btn-whatsapp').addEventListener('click',openWhatsApp);
-    document.getElementById('btn-whatsapp-bottom').addEventListener('click',openWhatsApp);
-  </script>
+  document.getElementById('btn-whatsapp').addEventListener('click',openWhatsApp);
+  document.getElementById('btn-whatsapp-bottom').addEventListener('click',openWhatsApp);
+});
+</script>
 </body>
-  </html>
-  
+</html>
