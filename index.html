@@ -29,7 +29,7 @@ body {
   min-height: 100vh;
   display:flex;
   flex-direction:column;
-  justify-content:space-between;
+  justify-content:flex-start;
   align-items:center;
   padding:2rem 1rem;
 }
@@ -51,6 +51,18 @@ h1 {
   max-width:90%;
 }
 
+.button-group{
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+  align-items:center;
+  width:100%;
+}
+
+#btn-usuario-wrapper {
+  margin-top: 15vh; /* para que quede un poco más abajo del medio */
+}
+
 #contador {
   font-size: clamp(1rem,2vw,1.3rem);
   font-weight: bold;
@@ -63,16 +75,8 @@ h1 {
   font-size: clamp(0.7rem,1.5vw,0.85rem);
   color: #ccc;
   max-width: 90%;
-  margin-top:1rem;
+  margin-top:2rem;
   line-height:1.3;
-}
-
-.button-group{
-  display:flex;
-  flex-direction:column;
-  gap:1rem;
-  align-items:center;
-  width:100%;
 }
 
 .btn {
@@ -122,6 +126,7 @@ h1 {
   h1{font-size: clamp(2.5rem,10vw,4rem);}
   #promo{margin:1.5rem 0;}
   .btn{width:80%;}
+  #btn-usuario-wrapper{margin-top:10vh;}
 }
 </style>
 </head>
@@ -129,7 +134,7 @@ h1 {
 
 <div class="overlay">
 
-  <!-- Título -->
+  <!-- Título arriba de todo -->
   <h1>FortunaPlay</h1>
 
   <!-- Mensaje promocional -->
@@ -138,15 +143,15 @@ h1 {
     ¡Te lo vas a perder? 🎲💎
   </div>
 
-  <!-- Botón “Quiero mi usuario” al medio -->
-  <div class="button-group">
+  <!-- Botón “Quiero mi usuario” un poco más abajo del medio -->
+  <div id="btn-usuario-wrapper" class="button-group">
     <button class="btn btn-green" id="btn-usuario">
       <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
       Quiero mi usuario
     </button>
   </div>
 
-  <!-- Contador de usuarios -->
+  <!-- Contador de usuarios arriba del botón de dudas -->
   <div id="contador">Actualmente hay 0 jugadores conectados 🎲</div>
 
   <!-- Botón de dudas justo arriba de los legales -->
@@ -157,7 +162,7 @@ h1 {
     </button>
   </div>
 
-  <!-- Texto legal simple -->
+  <!-- Texto legal abajo de todo -->
   <div class="text-legal">
     Los premios son otorgados bajo términos y condiciones. +18
   </div>
