@@ -41,12 +41,12 @@ h1 {
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 15px var(--violeta), 0 0 25px var(--dorado);
   margin:0;
-  padding-top:1rem;
+  padding-top:0.5rem; /* subido un poco */
 }
 
 #promo {
   font-size: clamp(1rem,2vw,1.5rem);
-  margin:2rem 0 5rem 0; /* un poco más abajo del título */
+  margin:1.5rem 0 4rem 0; /* subido un poco */
   line-height:1.4;
   max-width:90%;
 }
@@ -60,7 +60,7 @@ h1 {
 }
 
 #btn-usuario-wrapper {
-  margin-top:auto; /* empuja hacia abajo */
+  margin-top:auto;
   margin-bottom:1rem;
 }
 
@@ -125,7 +125,7 @@ h1 {
 @media (max-width:600px){
   .overlay{padding:1rem;}
   h1{font-size: clamp(2.5rem,10vw,4rem);}
-  #promo{margin:1.5rem 0 3rem 0;}
+  #promo{margin:1.2rem 0 3rem 0;}
   .btn{width:80%;}
 }
 </style>
@@ -134,16 +134,13 @@ h1 {
 
 <div class="overlay">
 
-  <!-- Título arriba de todo -->
   <h1>FortunaPlay</h1>
 
-  <!-- Mensaje promocional un poquito debajo -->
   <div id="promo">
     Te creamos el usuario al instante!<br>
     ¡Te lo vas a perder? 🎲💎
   </div>
 
-  <!-- Botón “Quiero mi usuario” un poco más abajo del medio -->
   <div id="btn-usuario-wrapper" class="button-group">
     <button class="btn btn-green" id="btn-usuario">
       <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
@@ -151,10 +148,8 @@ h1 {
     </button>
   </div>
 
-  <!-- Contador de usuarios arriba del botón de dudas -->
   <div id="contador">Actualmente hay 0 jugadores conectados 🎲</div>
 
-  <!-- Botón de dudas justo arriba de los legales -->
   <div class="button-group">
     <button class="btn btn-gray" id="btn-dudas">
       <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
@@ -162,7 +157,6 @@ h1 {
     </button>
   </div>
 
-  <!-- Texto legal abajo de todo -->
   <div class="text-legal">
     Los premios son otorgados bajo términos y condiciones. +18
   </div>
@@ -170,13 +164,21 @@ h1 {
 </div>
 
 <script>
+/* Orden según lo que pasaste: 
+   1) 1171334027 (Lucas)
+   2) 1156349123 (Camila)
+   3) 1173566830 (Octavio)
+   4) 1123365501 (Joaquina)
+   5) 1125127839 (Facu)
+   6) 1132525913 (Martin)
+*/
 const WHATS_LINES = [
-  {num:'5491171334027', msgUsuario:'Hola martin, me creas un usuario?', msgDudas:'Me das más info?'},
-  {num:'5491156349123', msgUsuario:'Hola lucas, me creas un usuario?', msgDudas:'Me das más info?'},
-  {num:'5491173566830', msgUsuario:'Hola cami, me creas un usuario?', msgDudas:'Me das más info?'},
-  {num:'5491125127839', msgUsuario:'Hola octavio, me creas un usuario?', msgDudas:'Me das más info?'},
-  {num:'5491123365501', msgUsuario:'hola facu, me podes crear un usuario porfa?', msgDudas:'Me das más info?'},
-  {num:'5491125127839', msgUsuario:'hola me creas un usuario? 🤚🍀', msgDudas:'Me das más info?'}
+  { num: '5491171334027' },
+  { num: '5491156349123' },
+  { num: '5491173566830' },
+  { num: '5491123365501' },
+  { num: '5491125127839' },
+  { num: '5491132525913' }
 ];
 
 function nextIndex(){
@@ -190,7 +192,9 @@ function nextIndex(){
 function openWhatsApp(type){
   const idx = nextIndex();
   const line = WHATS_LINES[idx];
-  let msg = type==='usuario' ? line.msgUsuario : line.msgDudas;
+  const msg = (type === 'usuario')
+    ? 'hola, me creas un usuario?'
+    : 'hola me das más información?';
   const url=`https://wa.me/${line.num}?text=${encodeURIComponent(msg)}`;
   const w=window.open(url,'_blank','noopener');
   if(!w) location.href=url;
