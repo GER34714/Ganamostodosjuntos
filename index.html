@@ -1,75 +1,220 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DINASTY BET ™</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FortunaPlay</title>
+<meta name="description" content="🎰 FortunaPlay - Tu nueva experiencia de juego online. Unite y participá con nosotros por premios increíbles.">
 
-  <!-- Meta Open Graph para vista previa -->
-  <meta property="og:title" content="DINASTY BET ™ - Tu nueva experiencia de casino online">
-  <meta property="og:description" content="🎰 Bienvenido a DINASTY BET ™. Registrate, jugá y disfrutá de nuestras promociones exclusivas.">
-  <meta property="og:image" content="https://raw.githubusercontent.com/GER34714/DINASFIN/refs/heads/main/undefined%20-%20Imgur.jpg">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://tusitio.com">
+<style>
+:root {
+  --verde: #25D366;
+  --verde-oscuro: #128C7E;
+  --gris: #555555;
+  --violeta: #7d2ae8;
+  --dorado: #FFD700;
+}
 
-  <!-- Estilos -->
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-      color: white;
-      text-align: center;
-    }
+*{box-sizing:border-box;}
+body {
+  margin:0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://iili.io/KJmu0S2.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+}
 
-    header img {
-      width: 120px;
-      margin: 20px auto;
-      display: block;
-      filter: drop-shadow(0 0 15px gold);
-    }
+.overlay {
+  min-height: 100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:center;
+  padding:2rem 1rem;
+}
 
-    h1 {
-      margin-top: 5px; /* Subido un poquito */
-      font-size: 2rem;
-      color: gold;
-    }
+h1 {
+  font-size: clamp(3rem,8vw,6rem);
+  background: linear-gradient(135deg, var(--dorado), var(--violeta));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 15px var(--violeta), 0 0 25px var(--dorado);
+  margin:0;
+  padding-top:0.5rem; /* subido un poco */
+}
 
-    p.promocion {
-      margin-top: 5px; /* Subido un poquito */
-      font-size: 1.2rem;
-      color: #fff;
-    }
+#promo {
+  font-size: clamp(1rem,2vw,1.5rem);
+  margin:1.5rem 0 4rem 0; /* subido un poco */
+  line-height:1.4;
+  max-width:90%;
+}
 
-    .boton {
-      display: block;
-      margin: 20px auto;
-      padding: 12px 20px;
-      background: gold;
-      color: #000;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 12px;
-      width: 200px;
-      box-shadow: 0 0 15px gold;
-    }
-  </style>
+.button-group{
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+  align-items:center;
+  width:100%;
+}
+
+#btn-usuario-wrapper {
+  margin-top:auto;
+  margin-bottom:1rem;
+}
+
+#contador {
+  font-size: clamp(1rem,2vw,1.3rem);
+  font-weight: bold;
+  margin:1rem 0 1rem 0;
+  color: var(--dorado);
+  text-shadow: 0 0 10px var(--violeta);
+}
+
+.text-legal {
+  font-size: clamp(0.7rem,1.5vw,0.85rem);
+  color: #ccc;
+  max-width: 90%;
+  margin-top:1rem;
+  line-height:1.3;
+}
+
+.btn {
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+  padding:0.8rem 1.8rem;
+  border:none;
+  border-radius:50px;
+  font-size:clamp(0.9rem,2vw,1.2rem);
+  font-weight:bold;
+  color:#fff;
+  cursor:pointer;
+  text-decoration:none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-align:center;
+  max-width:300px;
+  justify-content:center;
+}
+
+.btn-green { 
+  background: linear-gradient(135deg, var(--verde-oscuro), var(--verde)); 
+  box-shadow: 0 0 10px var(--verde), 0 0 20px var(--verde), 0 0 30px var(--verde);
+  animation: glow 2s infinite alternate;
+}
+
+.btn-gray { 
+  background: linear-gradient(135deg, #666, var(--gris)); 
+  padding:0.6rem 1.5rem; 
+  box-shadow: 0 0 8px #888, 0 0 16px #555;
+}
+
+.btn:hover { 
+  transform: scale(1.05); 
+  box-shadow:0 0 20px var(--verde),0 0 40px var(--verde),0 0 60px var(--verde);
+}
+
+.btn img{ width:24px; height:24px; }
+
+@keyframes glow {
+  0%,100% { box-shadow: 0 0 10px var(--verde), 0 0 20px var(--verde), 0 0 30px var(--verde); }
+  50% { box-shadow: 0 0 20px var(--verde), 0 0 40px var(--verde), 0 0 60px var(--verde); }
+}
+
+@media (max-width:600px){
+  .overlay{padding:1rem;}
+  h1{font-size: clamp(2.5rem,10vw,4rem);}
+  #promo{margin:1.2rem 0 3rem 0;}
+  .btn{width:80%;}
+}
+</style>
 </head>
 <body>
-  <header>
-    <img src="https://raw.githubusercontent.com/GER34714/DINASFIN/refs/heads/main/undefined%20-%20Imgur.jpg" alt="Logo DINASTY BET">
-    <h1>DINASTY BET ™</h1>
-    <p class="promocion">🎰 ¡Bienvenido! Registrate y jugá ahora mismo</p>
-  </header>
 
-  <!-- Botones WhatsApp -->
-  <a class="boton" href="https://wa.me/5491171334027?text=Hola%20me%20das%20más%20información%3F">Dudas - Lucas</a>
-  <a class="boton" href="https://wa.me/5491156349123?text=Hola%20me%20das%20más%20información%3F">Dudas - Camila</a>
-  <a class="boton" href="https://wa.me/5491173566830?text=Hola%20me%20das%20más%20información%3F">Dudas - Octavio</a>
-  <a class="boton" href="https://wa.me/5491123365501?text=Hola%20me%20das%20más%20información%3F">Dudas - Joaquina</a>
-  <a class="boton" href="https://wa.me/5491125127839?text=Hola%20me%20das%20más%20información%3F">Dudas - FACU</a>
-  <a class="boton" href="https://wa.me/5491132525913?text=Hola%20me%20das%20más%20información%3F">Dudas - Martin</a>
+<div class="overlay">
 
-  <a class="boton" href="https://wa.me/5491171334027?text=Hola%2C%20me%20creas%20un%20usuario%3F">Quiero mi usuario</a>
+  <h1>FortunaPlay</h1>
+
+  <div id="promo">
+    Te creamos el usuario al instante!<br>
+    ¡Te lo vas a perder? 🎲💎
+  </div>
+
+  <div id="btn-usuario-wrapper" class="button-group">
+    <button class="btn btn-green" id="btn-usuario">
+      <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
+      Quiero mi usuario
+    </button>
+  </div>
+
+  <div id="contador">Actualmente hay 0 jugadores conectados 🎲</div>
+
+  <div class="button-group">
+    <button class="btn btn-gray" id="btn-dudas">
+      <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
+      DUDAS? Escribinos
+    </button>
+  </div>
+
+  <div class="text-legal">
+    Los premios son otorgados bajo términos y condiciones. +18
+  </div>
+
+</div>
+
+<script>
+/* Orden según lo que pasaste: 
+   1) 1171334027 (Lucas)
+   2) 1156349123 (Camila)
+   3) 1173566830 (Octavio)
+   4) 1123365501 (Joaquina)
+   5) 1125127839 (Facu)
+   6) 1132525913 (Martin)
+*/
+const WHATS_LINES = [
+  { num: '5491171334027' },
+  { num: '5491156349123' },
+  { num: '5491173566830' },
+  { num: '5491123365501' },
+  { num: '5491125127839' },
+  { num: '5491132525913' }
+];
+
+function nextIndex(){
+  const key='waIndex';
+  const current=parseInt(localStorage.getItem(key)||'-1',10);
+  const next=(isNaN(current)?0:(current+1)%WHATS_LINES.length);
+  localStorage.setItem(key,String(next));
+  return next;
+}
+
+function openWhatsApp(type){
+  const idx = nextIndex();
+  const line = WHATS_LINES[idx];
+  const msg = (type === 'usuario')
+    ? 'hola, me creas un usuario?'
+    : 'hola me das más información?';
+  const url=`https://wa.me/${line.num}?text=${encodeURIComponent(msg)}`;
+  const w=window.open(url,'_blank','noopener');
+  if(!w) location.href=url;
+
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({'event': type==='usuario'?'click_usuario':'click_dudas'});
+}
+
+document.getElementById('btn-usuario').addEventListener('click',()=>openWhatsApp('usuario'));
+document.getElementById('btn-dudas').addEventListener('click',()=>openWhatsApp('dudas'));
+
+function actualizarContador(){
+  const base = 230;
+  const variacion = Math.floor(Math.random()*40);
+  const total = base + variacion;
+  document.getElementById("contador").innerText = `Actualmente hay ${total} jugadores conectados 🎲`;
+}
+actualizarContador();
+setInterval(actualizarContador, 5000);
+</script>
+
 </body>
 </html>
