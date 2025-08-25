@@ -3,143 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ganamos Todos Juntos 🎰</title>
+  <title>Fortuna Play 🎰</title>
+  <meta name="description" content="Fortuna Play - Tu usuario al instante. ¡Sumate a la diversión ahora!">
 
-  <!-- Meta descripción -->
-  <meta name="description" content="🎰 Ganamos Todos Juntos - Tu nueva experiencia de juego online. Unite y participá con nosotros por premios increíbles.">
-  <meta name="keywords" content="casino, apuestas, juegos online, premios, Ganamos Todos Juntos">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Ganamos Todos Juntos 🎰 - Sumate a la diversión">
-  <meta property="og:description" content="Jugá con nosotros y participá de premios únicos. Ganamos Todos Juntos 💎">
-  <meta property="og:image" content="https://iili.io/KJmu0S2.jpg">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://tulanding.com"> <!-- Cambiá por tu URL real -->
+  <!-- Google Tag Manager -->
+  <script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-N94M2ZVS');
+  </script>
+  <!-- End Google Tag Manager -->
 
   <style>
-    :root {
-      --verde: #25D366;
-      --dorado: #ffd700;
-      --violeta: #7d2ae8;
-    }
-    *{box-sizing:border-box;}
+    /* Fondo con efecto casino */
     body {
-      margin:0;
+      margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: url('https://iili.io/KJmu0S2.jpg') no-repeat center center fixed;
-      background-size: cover;
+      background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
       color: #fff;
       text-align: center;
     }
+
     .overlay {
-      background: rgba(0,0,0,0.65);
-      min-height: 100vh;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      padding:2rem;
+      padding: 60px 20px;
     }
+
     h1 {
-      font-size: clamp(2rem,5vw,4rem);
-      color: var(--dorado);
-      text-shadow:0 0 15px var(--violeta),0 0 30px var(--dorado);
-      margin-bottom:1rem;
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #ffd700; /* dorado */
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
     }
+
     p {
-      font-size: clamp(1rem,2vw,1.5rem);
-      margin-bottom:2rem;
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      line-height: 1.6;
     }
-    .button-group{
-      display:flex;
-      flex-direction:column;
-      gap:1rem;
-      align-items:center;
-      margin-bottom:2rem;
-    }
+
     .btn {
-      display:inline-flex;
-      align-items:center;
-      gap:0.6rem;
-      padding:1rem 2rem;
-      border:none;
-      border-radius:50px;
-      font-size:1.1rem;
-      font-weight:bold;
-      color:#fff;
-      background: var(--verde);
-      cursor:pointer;
-      text-decoration:none;
-      box-shadow: 0 0 10px var(--verde),0 0 20px var(--verde),0 0 40px var(--verde);
+      display: inline-block;
+      padding: 14px 26px;
+      margin: 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #fff;
+      background: #28a745; /* verde más amigable */
       transition: transform 0.2s, box-shadow 0.2s;
-      text-align:center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
     }
+
     .btn:hover {
       transform: scale(1.05);
-      box-shadow:0 0 20px var(--verde),0 0 40px var(--verde),0 0 60px var(--verde);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.6);
+      background: #218838; /* verde más oscuro */
     }
-    .btn img{
-      width:24px;
-      height:24px;
-      filter: drop-shadow(0 0 5px var(--verde));
+
+    footer {
+      margin-top: 60px;
+      font-size: 0.9rem;
+      opacity: 0.7;
     }
   </style>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N94M2ZVS"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
   <div class="overlay">
-    <h1>Ganamos Todos Juntos 🎰</h1>
+    <h1>Fortuna Play 🎰</h1>
     <p>
-      ¿Querés ganar los mejores premios?<br>
-      ¿Querés jugar donde juegan los verdaderos grandes?<br>
-      Probá tu suerte.<br>
-      ¡Desafiá tu destino, no te quedes con las ganas!<br>
-      Te hacemos el usuario al instante.
+      ✨ ¡Te creamos el usuario al instante!<br>
+      🎯 ¿Te lo vas a perder?<br>
+      💎 Sumate a la diversión y jugá donde juegan los grandes.
     </p>
 
-    <div class="button-group">
-      <!-- Botón Usuario -->
-      <button class="btn" id="btn-usuario">
-        <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
-        Quiero mi usuario
-      </button>
-
-      <!-- Botón Dudas -->
-      <button class="btn" id="btn-dudas">
-        <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
-        DUDAS? ESCRIBINOS…<br>Estamos para ayudarte
-      </button>
-    </div>
+    <!-- Botones WhatsApp -->
+    <a href="https://wa.me/5491123456789?text=Hola%20FACU%20me%20creas%20un%20usuario%20porfa%3F%20Mi%20nombre%20es%3A" class="btn">
+      📲 Pedir Usuario
+    </a>
+    <a href="https://wa.me/5491123456789?text=Quiero%20saber%20más%20info%20sobre%20Fortuna%20Play" class="btn">
+      ℹ️ Más Información
+    </a>
   </div>
 
-  <script>
-    const WHATS_LINES = [
-      {num:'5491171334027', msgUsuario:'Hola martin, me creas un usuario?', msgDudas:'Me das más info?'},
-      {num:'5491156349123', msgUsuario:'Hola lucas, me creas un usuario?', msgDudas:'Me das más info?'},
-      {num:'5491173566830', msgUsuario:'Hola cami, me creas un usuario?', msgDudas:'Me das más info?'},
-      {num:'5491125127839', msgUsuario:'Hola octavio, me creas un usuario?', msgDudas:'Me das más info?'},
-      {num:'5491123365501', msgUsuario:'hola facu, me podes crear un usuario porfa?', msgDudas:'Me das más info?'},
-      {num:'5491125127839', msgUsuario:'hola me creas un usuario? 🤚🍀', msgDudas:'Me das más info?'}
-    ];
-
-    function nextIndex(){
-      const key='waIndex';
-      const current=parseInt(localStorage.getItem(key)||'-1',10);
-      const next=(isNaN(current)?0:(current+1)%WHATS_LINES.length);
-      localStorage.setItem(key,String(next));
-      return next;
-    }
-
-    function openWhatsApp(type){
-      const idx = nextIndex();
-      const line = WHATS_LINES[idx];
-      let msg = type==='usuario' ? line.msgUsuario : line.msgDudas;
-      const url=`https://wa.me/${line.num}?text=${encodeURIComponent(msg)}`;
-      const w=window.open(url,'_blank','noopener');
-      if(!w) location.href=url;
-    }
-
-    document.getElementById('btn-usuario').addEventListener('click',()=>openWhatsApp('usuario'));
-    document.getElementById('btn-dudas').addEventListener('click',()=>openWhatsApp('dudas'));
-  </script>
+  <footer>
+    © 2025 Fortuna Play - Todos los derechos reservados.
+  </footer>
 </body>
 </html>
