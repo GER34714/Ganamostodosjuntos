@@ -1,170 +1,137 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GANAMOS TODOS JUNTOS</title>
-<meta name="description" content="Landing con botones de WhatsApp rotando y partículas neón animadas.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DINASTY BET ™</title>
+  
+  <!-- SEO + Vista previa -->
+  <meta name="description" content="🎰 Bienvenido a la nueva era del juego online ✨. Juega, gana y viví la experiencia DINASTY BET ™.">
+  <meta name="keywords" content="casino, apuestas, premios, juegos, whatsapp, dinasty bet">
+  <meta property="og:title" content="DINASTY BET ™ - Tu nueva experiencia de casino online">
+  <meta property="og:description" content="🎰 Bienvenido a la nueva era del juego online ✨. Juega, gana y viví la experiencia DINASTY BET ™.">
+  <meta property="og:image" content="https://iili.io/KJmu0S2.jpg">
+  <meta property="og:type" content="website">
 
-<style>
-:root{
-  --violeta:#6a00ff; --rosa:#ff00de; --cian:#00f5ff; --verde:#25D366; --txt:#fff;
-}
-*{box-sizing:border-box;}
-html, body{height:100%; margin:0; font-family:Arial,sans-serif; color:var(--txt);}
-body{
-  display:flex; flex-direction:column; justify-content:center; align-items:center;
-  text-align:center;
-  background:#000;
-  overflow:hidden;
-  position:relative;
-}
-h1{
-  font-size:clamp(28px,8vw,72px);
-  font-weight:900;
-  margin:0 0 16px;
-  text-transform:uppercase;
-  text-shadow:
-    0 0 8px var(--rosa),
-    0 0 16px var(--rosa),
-    0 0 24px var(--violeta),
-    0 0 48px var(--cian);
-  animation:neon-flicker 1.6s infinite alternate;
-}
-p.sub{
-  font-size:clamp(14px,2.8vw,18px);
-  margin:0 0 30px;
-  text-shadow:0 1px 12px rgba(0,0,0,.75);
-  line-height:1.4;
-  animation:glow-text 2s infinite alternate;
-}
-.button-group{
-  display:flex;
-  gap:12px;
-  justify-content:center;
-  flex-wrap:wrap;
-  margin-bottom:20px;
-}
-.btn{
-  appearance:none; border:none; cursor:pointer;
-  padding:14px 22px; border-radius:999px; font-weight:900; font-size:clamp(14px,3.6vw,18px);
-  color:#0a0a0a; background:linear-gradient(180deg,#ffe29a,#ffb703);
-  box-shadow:0 0 14px var(--cian), inset 0 0 10px var(--cian);
-  transition:transform .12s ease, filter .2s ease, box-shadow .2s ease;
-  animation:neon-btn 2s infinite alternate;
-  display:flex; align-items:center; gap:8px;
-  z-index:2;
-}
-.btn:hover{
-  transform:translateY(-2px);
-  filter:saturate(1.1);
-  box-shadow:0 0 28px var(--rosa), inset 0 0 18px var(--rosa);
-}
-.btn:active{transform:scale(.98);}
-.btn i{
-  font-style:normal;
-  animation:whatsapp-pulse 1.5s infinite alternate;
-}
-@keyframes neon-flicker{
-  0%,19%,21%,23%,25%,54%,56%,100%{opacity:1;}
-  20%,24%,55%{opacity:.9;}
-}
-@keyframes neon-btn{
-  0%{box-shadow:0 0 12px var(--cian), inset 0 0 8px var(--cian);}
-  50%{box-shadow:0 0 26px var(--rosa), inset 0 0 16px var(--rosa);}
-  100%{box-shadow:0 0 14px var(--cian), inset 0 0 10px var(--cian);}
-}
-@keyframes whatsapp-pulse{
-  0%{color:var(--verde); text-shadow:0 0 4px var(--verde);}
-  50%{color:var(--cian); text-shadow:0 0 14px var(--cian);}
-  100%{color:var(--rosa); text-shadow:0 0 20px var(--rosa);}
-}
-@keyframes glow-text{
-  0%{text-shadow:0 0 12px var(--rosa),0 0 24px var(--violeta);}
-  50%{text-shadow:0 0 16px var(--cian),0 0 32px var(--rosa);}
-  100%{text-shadow:0 0 12px var(--violeta),0 0 24px var(--cian);}
-}
-/* Partículas flotantes */
-.particle{
-  position:absolute;
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:linear-gradient(45deg,#ff00de,#00f5ff,#6a00ff,#25D366);
-  box-shadow:0 0 8px #ff00de, 0 0 12px #00f5ff, 0 0 16px #6a00ff, 0 0 20px #25D366;
-  animation:floatParticle 5s infinite ease-in-out;
-  opacity:0.7;
-  z-index:1;
-}
-@keyframes floatParticle{
-  0%{transform:translateY(0) translateX(0) scale(1);}
-  50%{transform:translateY(-120px) translateX(60px) scale(1.2);}
-  100%{transform:translateY(0) translateX(-60px) scale(1);}
-}
-</style>
+  <style>
+    :root {
+      --verde: #25D366;
+      --dorado: #FFD700;
+      --violeta: #8A2BE2;
+      --negro: #000;
+      --blanco: #fff;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background: url("https://iili.io/KJmu0S2.jpg") no-repeat center center/cover;
+      color: var(--blanco);
+      overflow: hidden;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.8);
+      animation: fadeIn 1.5s ease;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--dorado);
+      text-shadow: 0 0 15px var(--violeta), 0 0 25px var(--dorado);
+    }
+
+    p {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      margin-bottom: 2rem;
+      color: #eee;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 1rem 2rem;
+      margin: 10px;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      background: var(--verde);
+      color: var(--blanco);
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(37, 211, 102, 0.8), 0 0 40px rgba(37, 211, 102, 0.6);
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(37, 211, 102, 1), 0 0 60px rgba(37, 211, 102, 0.8);
+    }
+
+    .btn img {
+      width: 25px;
+      height: 25px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <h1>DINASTY BET ™</h1>
+    <p>🎰 Bienvenido a la nueva era del juego online ✨<br>Tu suerte comienza aquí.</p>
+    
+    <button class="btn" id="btn-usuario" aria-label="Solicitar usuario por WhatsApp">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+      Quiero mi usuario!
+    </button>
 
-<h1>GANAMOS TODOS JUNTOS</h1>
+    <button class="btn" id="btn-premios" aria-label="Consultar premios por WhatsApp">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+      Consultar premios
+    </button>
+  </div>
 
-<p class="sub">
-Queres ganar los mejores premios?<br>
-Queres jugar donde juegan los verdaderos grandes?<br>
-Proba tu suerte.<br>
-Desafia tu Destino, no te quedes con las ganas!<br>
-Te hacemos el usuario al instante.
-</p>
+  <script>
+    const WHATS_LINES = [
+      "1158252898",
+      "1159336238"
+    ];
 
-<div class="button-group">
-  <button class="btn" id="btn-usuario"><i>💬</i> Quiero mi usuario!</button>
-  <button class="btn" id="btn-dudas"><i>💬</i> Dudas? Escribimos estamos para ayudarte…</button>
-</div>
+    function nextIndex(){
+      try {
+        const key='waIndex';
+        const current=parseInt(localStorage.getItem(key)||'-1',10);
+        const next=(isNaN(current)?0:(current+1)%WHATS_LINES.length);
+        localStorage.setItem(key,String(next));
+        return next;
+      } catch(e){
+        return Math.floor(Math.random()*WHATS_LINES.length);
+      }
+    }
 
-<script>
-document.addEventListener('DOMContentLoaded', function(){
-  const WHATS_LINES = [
-    { num:'5491132525913', msgUsuario:'Hola martin, me creas un usuario?', msgDudas:'Hola! Tengo dudas, necesito ayuda.' },
-    { num:'5491171334027', msgUsuario:'Hola lucas, me creas un usuario?', msgDudas:'Hola! Tengo dudas, necesito ayuda.' },
-    { num:'5491156349123', msgUsuario:'Hola cami, me creas un usuario?', msgDudas:'Hola! Tengo dudas, necesito ayuda.' },
-    { num:'5491173566830', msgUsuario:'Hola octavio, me creas un usuario?', msgDudas:'Hola! Tengo dudas, necesito ayuda.' },
-    { num:'5491125127839', msgUsuario:'hola facu, me podes crear un usuario porfa?', msgDudas:'Hola! Tengo dudas, necesito ayuda.' },
-    { num:'5491123365501', msgUsuario:'hola me creas un usuario? 🤚🍀', msgDudas:'Hola! Tengo dudas, necesito ayuda.' }
-  ];
+    document.getElementById("btn-usuario").addEventListener("click", () => {
+      const i = nextIndex();
+      window.open(`https://wa.me/54${WHATS_LINES[i]}?text=Hola!%20Quiero%20mi%20usuario`, "_blank");
+    });
 
-  function nextIndex(){
-    const key='waIndex';
-    const current=parseInt(localStorage.getItem(key)||'-1',10);
-    const next=(isNaN(current)?0:(current+1)%WHATS_LINES.length);
-    localStorage.setItem(key,String(next));
-    return next;
-  }
-
-  function openWhatsApp(type){
-    const idx = nextIndex();
-    const line = WHATS_LINES[idx];
-    let num = line.num;
-    let msg = type==='usuario' ? line.msgUsuario : line.msgDudas;
-    const url=`https://wa.me/${num}?text=${encodeURIComponent(msg)}`;
-    const w=window.open(url,'_blank','noopener');
-    if(!w) location.href=url;
-  }
-
-  document.getElementById('btn-usuario').addEventListener('click',()=>openWhatsApp('usuario'));
-  document.getElementById('btn-dudas').addEventListener('click',()=>openWhatsApp('dudas'));
-
-  // Crear partículas flotantes
-  for(let i=0;i<40;i++){
-    const p=document.createElement('div');
-    p.classList.add('particle');
-    p.style.left=Math.random()*100+'vw';
-    p.style.top=Math.random()*100+'vh';
-    p.style.width=2+Math.random()*6+'px';
-    p.style.height=p.style.width;
-    p.style.animationDuration=(3+Math.random()*5)+'s';
-    document.body.appendChild(p);
-  }
-});
-</script>
-
+    document.getElementById("btn-premios").addEventListener("click", () => {
+      const i = nextIndex();
+      window.open(`https://wa.me/54${WHATS_LINES[i]}?text=Hola!%20Quiero%20consultar%20los%20premios`, "_blank");
+    });
+  </script>
 </body>
 </html>
