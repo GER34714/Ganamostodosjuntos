@@ -20,6 +20,7 @@
     :root {
       --verde: #25D366;
       --verde-oscuro: #128C7E;
+      --gris: #555555;
       --dorado: #FFD700;
       --violeta: #7d2ae8;
     }
@@ -60,6 +61,13 @@
       color: var(--dorado);
       text-shadow: 0 0 10px var(--violeta);
     }
+    .text-legal {
+      font-size: 0.85rem;
+      color: #ccc;
+      max-width: 90%;
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+    }
     .button-group{
       display:flex;
       flex-direction:column;
@@ -78,21 +86,16 @@
       font-size:1.1rem;
       font-weight:bold;
       color:#fff;
-      background: linear-gradient(135deg, var(--verde-oscuro), var(--verde));
       cursor:pointer;
       text-decoration:none;
       box-shadow: 0 4px 12px rgba(0,0,0,0.4);
       transition: transform 0.2s, box-shadow 0.2s;
       text-align:center;
     }
-    .btn:hover {
-      transform: scale(1.05);
-      box-shadow:0 6px 18px rgba(0,0,0,0.6);
-    }
-    .btn img{
-      width:24px;
-      height:24px;
-    }
+    .btn-green { background: linear-gradient(135deg, var(--verde-oscuro), var(--verde)); }
+    .btn-gray { background: linear-gradient(135deg, #666, var(--gris)); }
+    .btn:hover { transform: scale(1.05); box-shadow:0 6px 18px rgba(0,0,0,0.6); }
+    .btn img{ width:24px; height:24px; }
   </style>
 </head>
 <body>
@@ -117,14 +120,21 @@
     <!-- Contador dinámico -->
     <div id="contador">Actualmente hay 0 jugadores conectados 🎲</div>
 
-    <!-- Botones abajo -->
+    <!-- Textos legales / info extra antes de los botones -->
+    <div class="text-legal">
+      🎲 Juega con responsabilidad. FortunaPlay es solo para mayores de 18 años.<br>
+      ⚠️ No se requiere experiencia previa y todos los premios son otorgados bajo términos y condiciones.<br>
+      📄 Consulta nuestros <a href="#" style="color: var(--dorado); text-decoration: underline;">Términos y Condiciones</a> y <a href="#" style="color: var(--dorado); text-decoration: underline;">Política de Privacidad</a>.
+    </div>
+
+    <!-- Botones abajo con colores distintos -->
     <div class="button-group">
-      <button class="btn" id="btn-usuario">
+      <button class="btn btn-green" id="btn-usuario">
         <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
         Quiero mi usuario
       </button>
 
-      <button class="btn" id="btn-dudas">
+      <button class="btn btn-gray" id="btn-dudas">
         <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
         DUDAS? ESCRIBINOS…<br>Estamos para ayudarte
       </button>
