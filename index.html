@@ -6,6 +6,16 @@
 <title>FortunaPlay</title>
 <meta name="description" content="🎰 FortunaPlay - Tu nueva experiencia de juego online. Unite y participá con nosotros por premios increíbles.">
 
+<!-- Etiquetas Open Graph -->
+<meta property="og:title" content="FortunaPlay 🎰">
+<meta property="og:description" content="Tu nueva experiencia de juego online. Unite y participá por premios increíbles.">
+<meta property="og:image" content="https://iili.io/KJmu0S2.jpg">
+<meta property="og:url" content="https://tusitio.com/">
+<meta property="og:type" content="website">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="https://iili.io/KJpXWH7.jpg">
+
 <style>
 :root {
   --verde: #25D366;
@@ -41,12 +51,12 @@ h1 {
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 15px var(--violeta), 0 0 25px var(--dorado);
   margin:0;
-  padding-top:0.5rem; /* subido un poco */
+  padding-top:0.5rem;
 }
 
 #promo {
   font-size: clamp(1rem,2vw,1.5rem);
-  margin:1.5rem 0 4rem 0; /* subido un poco */
+  margin:1.5rem 0 4rem 0;
   line-height:1.4;
   max-width:90%;
 }
@@ -133,9 +143,7 @@ h1 {
 <body>
 
 <div class="overlay">
-
   <h1>FortunaPlay</h1>
-
   <div id="promo">
     Te creamos el usuario al instante!<br>
     ¡Te lo vas a perder? 🎲💎
@@ -160,18 +168,9 @@ h1 {
   <div class="text-legal">
     Los premios son otorgados bajo términos y condiciones. +18
   </div>
-
 </div>
 
 <script>
-/* Orden según lo que pasaste: 
-   1) 1171334027 (Lucas)
-   2) 1156349123 (Camila)
-   3) 1173566830 (Octavio)
-   4) 1123365501 (Joaquina)
-   5) 1125127839 (Facu)
-   6) 1132525913 (Martin)
-*/
 const WHATS_LINES = [
   { num: '5491171334027' },
   { num: '5491156349123' },
@@ -198,7 +197,6 @@ function openWhatsApp(type){
   const url=`https://wa.me/${line.num}?text=${encodeURIComponent(msg)}`;
   const w=window.open(url,'_blank','noopener');
   if(!w) location.href=url;
-
   window.dataLayer = window.dataLayer || [];
   dataLayer.push({'event': type==='usuario'?'click_usuario':'click_dudas'});
 }
