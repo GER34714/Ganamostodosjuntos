@@ -4,13 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GANAMOS TODOS JUNTOS</title>
-<meta name="description" content="Landing con botones de WhatsApp rotando y efecto de partículas neón con resplandor.">
-
-<!-- Open Graph -->
-<meta property="og:title" content="GANAMOS TODOS JUNTOS">
-<meta property="og:description" content="Tocá los botones y hablá por WhatsApp. Rotación entre 6 números.">
-<meta property="og:image" content="https://iili.io/KJsyuDv.gif">
-<meta property="og:url" content="https://tu-dominio.com/">
+<meta name="description" content="Landing con botones de WhatsApp rotando y partículas neón animadas.">
 
 <style>
 :root{
@@ -21,10 +15,9 @@ html, body{height:100%; margin:0; font-family:Arial,sans-serif; color:var(--txt)
 body{
   display:flex; flex-direction:column; justify-content:center; align-items:center;
   text-align:center;
-  background:url('https://iili.io/KJsyuDv.gif') no-repeat center center fixed;
-  background-size:40% auto;
-  position:relative;
+  background:#000;
   overflow:hidden;
+  position:relative;
 }
 h1{
   font-size:clamp(28px,8vw,72px);
@@ -45,7 +38,6 @@ p.sub{
   line-height:1.4;
   animation:glow-text 2s infinite alternate;
 }
-
 .button-group{
   display:flex;
   gap:12px;
@@ -53,7 +45,6 @@ p.sub{
   flex-wrap:wrap;
   margin-bottom:20px;
 }
-
 .btn{
   appearance:none; border:none; cursor:pointer;
   padding:14px 22px; border-radius:999px; font-weight:900; font-size:clamp(14px,3.6vw,18px);
@@ -74,7 +65,6 @@ p.sub{
   font-style:normal;
   animation:whatsapp-pulse 1.5s infinite alternate;
 }
-
 @keyframes neon-flicker{
   0%,19%,21%,23%,25%,54%,56%,100%{opacity:1;}
   20%,24%,55%{opacity:.9;}
@@ -94,8 +84,7 @@ p.sub{
   50%{text-shadow:0 0 16px var(--cian),0 0 32px var(--rosa);}
   100%{text-shadow:0 0 12px var(--violeta),0 0 24px var(--cian);}
 }
-
-/* Partículas flotantes con resplandor */
+/* Partículas flotantes */
 .particle{
   position:absolute;
   width:6px;
