@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FortunaPlay 🎰</title>
+  <title>FortunaPlay</title>
   <meta name="description" content="🎰 FortunaPlay - Tu nueva experiencia de juego online. Unite y participá con nosotros por premios increíbles.">
 
   <!-- Google Tag Manager -->
@@ -22,7 +22,6 @@
       --verde-oscuro: #128C7E;
       --gris: #555555;
       --violeta: #7d2ae8;
-      --rosa: #ff4da6;
       --dorado: #FFD700;
     }
     *{box-sizing:border-box;}
@@ -45,10 +44,10 @@
 
     h1 {
       font-size: clamp(3.5rem,8vw,6rem);
-      background: linear-gradient(135deg, var(--violeta), var(--rosa), var(--dorado));
+      background: linear-gradient(135deg, var(--dorado), var(--violeta));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 15px var(--violeta), 0 0 25px var(--rosa), 0 0 35px var(--dorado), 0 0 45px var(--violeta);
+      text-shadow: 0 0 15px var(--violeta), 0 0 25px var(--dorado);
       margin-top:0.3rem;
       margin-bottom:2rem;
     }
@@ -62,7 +61,7 @@
     #contador {
       font-size: 1.2rem;
       font-weight: bold;
-      margin: 1rem 0 2rem 0;
+      margin: 2rem 0 1rem 0;
       color: var(--dorado);
       text-shadow: 0 0 10px var(--violeta);
     }
@@ -80,7 +79,6 @@
       flex-direction:column;
       gap:1rem;
       align-items:center;
-      margin-bottom:2rem;
     }
 
     .btn {
@@ -135,7 +133,7 @@
 
   <div class="overlay">
     <!-- Título -->
-    <h1>FortunaPlay 🎰</h1>
+    <h1>FortunaPlay</h1>
 
     <!-- Mensaje promocional -->
     <div id="promo">
@@ -143,10 +141,7 @@
       ¡Te lo vas a perder? 🎲💎
     </div>
 
-    <!-- Contador dinámico -->
-    <div id="contador">Actualmente hay 0 jugadores conectados 🎲</div>
-
-    <!-- Botón principal en el medio -->
+    <!-- Botón “Quiero mi usuario” al medio -->
     <div class="button-group">
       <button class="btn btn-green" id="btn-usuario">
         <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
@@ -154,7 +149,10 @@
       </button>
     </div>
 
-    <!-- Botón de dudas abajo de todo -->
+    <!-- Contador de usuarios -->
+    <div id="contador">Actualmente hay 0 jugadores conectados 🎲</div>
+
+    <!-- Botón de dudas abajo -->
     <div class="button-group">
       <button class="btn btn-gray" id="btn-dudas">
         <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
