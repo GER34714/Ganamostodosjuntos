@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GANAMOS TODOS JUNTOS</title>
-<meta name="description" content="Landing imponente con botón de WhatsApp que rota entre 6 líneas.">
+<meta name="description" content="Landing con botones de WhatsApp rotando y efecto de partículas neón con resplandor.">
 
 <!-- Open Graph -->
 <meta property="og:title" content="GANAMOS TODOS JUNTOS">
-<meta property="og:description" content="Tocá el botón y hablá por WhatsApp. Rotación entre 6 números.">
+<meta property="og:description" content="Tocá los botones y hablá por WhatsApp. Rotación entre 6 números.">
 <meta property="og:image" content="https://iili.io/KJsyuDv.gif">
 <meta property="og:url" content="https://tu-dominio.com/">
 
 <style>
 :root{
-  --violeta:#6a00ff; --rosa:#ff00de; --cian:#00f5ff; --txt:#fff;
+  --violeta:#6a00ff; --rosa:#ff00de; --cian:#00f5ff; --verde:#25D366; --txt:#fff;
 }
 *{box-sizing:border-box;}
 html, body{height:100%; margin:0; font-family:Arial,sans-serif; color:var(--txt);}
@@ -22,17 +22,37 @@ body{
   display:flex; flex-direction:column; justify-content:center; align-items:center;
   text-align:center;
   background:url('https://iili.io/KJsyuDv.gif') no-repeat center center fixed;
-  background-size:cover;
+  background-size:40% auto;
+  position:relative;
+  overflow:hidden;
 }
 h1{
   font-size:clamp(28px,8vw,72px);
   font-weight:900;
   margin:0 0 16px;
   text-transform:uppercase;
-  text-shadow:0 0 6px var(--rosa),0 0 12px var(--rosa),0 0 24px var(--rosa),0 0 48px var(--rosa);
+  text-shadow:
+    0 0 8px var(--rosa),
+    0 0 16px var(--rosa),
+    0 0 24px var(--violeta),
+    0 0 48px var(--cian);
   animation:neon-flicker 1.6s infinite alternate;
 }
-p.sub{font-size:clamp(14px,2.8vw,18px); margin:0 0 22px; text-shadow:0 1px 10px rgba(0,0,0,.65); opacity:.95;}
+p.sub{
+  font-size:clamp(14px,2.8vw,18px);
+  margin:0 0 30px;
+  text-shadow:0 1px 12px rgba(0,0,0,.75);
+  line-height:1.4;
+  animation:glow-text 2s infinite alternate;
+}
+
+.button-group{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
 
 .btn{
   appearance:none; border:none; cursor:pointer;
@@ -41,11 +61,18 @@ p.sub{font-size:clamp(14px,2.8vw,18px); margin:0 0 22px; text-shadow:0 1px 10px 
   box-shadow:0 0 14px var(--cian), inset 0 0 10px var(--cian);
   transition:transform .12s ease, filter .2s ease, box-shadow .2s ease;
   animation:neon-btn 2s infinite alternate;
+  display:flex; align-items:center; gap:8px;
+  z-index:2;
 }
-.btn:hover{transform:translateY(-2px); filter:saturate(1.1); box-shadow:0 0 22px var(--rosa), inset 0 0 16px var(--rosa);}
+.btn:hover{
+  transform:translateY(-2px);
+  filter:saturate(1.1);
+  box-shadow:0 0 28px var(--rosa), inset 0 0 18px var(--rosa);
+}
 .btn:active{transform:scale(.98);}
-.fixed-bottom{
-  position:fixed; bottom:10px; left:50%; transform:translateX(-50%); z-index:999;
+.btn i{
+  font-style:normal;
+  animation:whatsapp-pulse 1.5s infinite alternate;
 }
 
 @keyframes neon-flicker{
@@ -53,30 +80,66 @@ p.sub{font-size:clamp(14px,2.8vw,18px); margin:0 0 22px; text-shadow:0 1px 10px 
   20%,24%,55%{opacity:.9;}
 }
 @keyframes neon-btn{
-  0%{box-shadow:0 0 10px var(--cian), inset 0 0 8px var(--cian);}
-  50%{box-shadow:0 0 20px var(--rosa), inset 0 0 14px var(--rosa);}
+  0%{box-shadow:0 0 12px var(--cian), inset 0 0 8px var(--cian);}
+  50%{box-shadow:0 0 26px var(--rosa), inset 0 0 16px var(--rosa);}
   100%{box-shadow:0 0 14px var(--cian), inset 0 0 10px var(--cian);}
+}
+@keyframes whatsapp-pulse{
+  0%{color:var(--verde); text-shadow:0 0 4px var(--verde);}
+  50%{color:var(--cian); text-shadow:0 0 14px var(--cian);}
+  100%{color:var(--rosa); text-shadow:0 0 20px var(--rosa);}
+}
+@keyframes glow-text{
+  0%{text-shadow:0 0 12px var(--rosa),0 0 24px var(--violeta);}
+  50%{text-shadow:0 0 16px var(--cian),0 0 32px var(--rosa);}
+  100%{text-shadow:0 0 12px var(--violeta),0 0 24px var(--cian);}
+}
+
+/* Partículas flotantes con resplandor */
+.particle{
+  position:absolute;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:linear-gradient(45deg,#ff00de,#00f5ff,#6a00ff,#25D366);
+  box-shadow:0 0 8px #ff00de, 0 0 12px #00f5ff, 0 0 16px #6a00ff, 0 0 20px #25D366;
+  animation:floatParticle 5s infinite ease-in-out;
+  opacity:0.7;
+  z-index:1;
+}
+@keyframes floatParticle{
+  0%{transform:translateY(0) translateX(0) scale(1);}
+  50%{transform:translateY(-120px) translateX(60px) scale(1.2);}
+  100%{transform:translateY(0) translateX(-60px) scale(1);}
 }
 </style>
 </head>
 <body>
-<h1>GANAMOS TODOS JUNTOS</h1>
-<p class="sub">Hacé clic y hablá por WhatsApp. Rotamos entre 6 líneas.</p>
-<button class="btn" id="btn-whatsapp">💬 WhatsApp</button>
 
-<div class="fixed-bottom">
-  <button class="btn" id="btn-whatsapp-bottom">💬 WhatsApp</button>
+<h1>GANAMOS TODOS JUNTOS</h1>
+
+<p class="sub">
+Queres ganar los mejores premios?<br>
+Queres jugar donde juegan los verdaderos grandes?<br>
+Proba tu suerte.<br>
+Desafia tu Destino, no te quedes con las ganas!<br>
+Te hacemos el usuario al instante.
+</p>
+
+<div class="button-group">
+  <button class="btn" id="btn-usuario"><i>💬</i> Quiero mi usuario!</button>
+  <button class="btn" id="btn-dudas"><i>💬</i> Dudas? Escribimos estamos para ayudarte…</button>
 </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function(){
   const WHATS_LINES = [
-    { num:'5491132525913', msg:'Hola martin, me creas un usuario?' },
-    { num:'5491171334027', msg:'Hola lucas, me creas un usuario?' },
-    { num:'5491156349123', msg:'Hola cami, me creas un usuario?' },
-    { num:'5491173566830', msg:'Hola octavio, me creas un usuario?' },
-    { num:'5491125127839', msg:'hola facu, me podes crear un usuario porfa?' },
-    { num:'5491123365501', msg:'hola me creas un usuario? 🤚🍀' }
+    { num:'5491132525913', msgUsuario:'Hola martin, me creas un usuario?', msgDudas:'Hola! Tengo dudas, necesito ayuda.' },
+    { num:'5491171334027', msgUsuario:'Hola lucas, me creas un usuario?', msgDudas:'Hola! Tengo dudas, necesito ayuda.' },
+    { num:'5491156349123', msgUsuario:'Hola cami, me creas un usuario?', msgDudas:'Hola! Tengo dudas, necesito ayuda.' },
+    { num:'5491173566830', msgUsuario:'Hola octavio, me creas un usuario?', msgDudas:'Hola! Tengo dudas, necesito ayuda.' },
+    { num:'5491125127839', msgUsuario:'hola facu, me podes crear un usuario porfa?', msgDudas:'Hola! Tengo dudas, necesito ayuda.' },
+    { num:'5491123365501', msgUsuario:'hola me creas un usuario? 🤚🍀', msgDudas:'Hola! Tengo dudas, necesito ayuda.' }
   ];
 
   function nextIndex(){
@@ -87,17 +150,32 @@ document.addEventListener('DOMContentLoaded', function(){
     return next;
   }
 
-  function openWhatsApp(){
-    const idx=nextIndex();
-    const {num,msg}=WHATS_LINES[idx];
+  function openWhatsApp(type){
+    const idx = nextIndex();
+    const line = WHATS_LINES[idx];
+    let num = line.num;
+    let msg = type==='usuario' ? line.msgUsuario : line.msgDudas;
     const url=`https://wa.me/${num}?text=${encodeURIComponent(msg)}`;
     const w=window.open(url,'_blank','noopener');
     if(!w) location.href=url;
   }
 
-  document.getElementById('btn-whatsapp').addEventListener('click',openWhatsApp);
-  document.getElementById('btn-whatsapp-bottom').addEventListener('click',openWhatsApp);
+  document.getElementById('btn-usuario').addEventListener('click',()=>openWhatsApp('usuario'));
+  document.getElementById('btn-dudas').addEventListener('click',()=>openWhatsApp('dudas'));
+
+  // Crear partículas flotantes
+  for(let i=0;i<40;i++){
+    const p=document.createElement('div');
+    p.classList.add('particle');
+    p.style.left=Math.random()*100+'vw';
+    p.style.top=Math.random()*100+'vh';
+    p.style.width=2+Math.random()*6+'px';
+    p.style.height=p.style.width;
+    p.style.animationDuration=(3+Math.random()*5)+'s';
+    document.body.appendChild(p);
+  }
 });
 </script>
+
 </body>
 </html>
