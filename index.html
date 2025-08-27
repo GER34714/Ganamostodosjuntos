@@ -16,15 +16,6 @@
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="https://iili.io/KJpXWH7.jpg">
 
-<!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-502569916"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-502569916');
-</script>
-
 <style>
 :root {
   --verde: #25D366;
@@ -200,12 +191,12 @@ function nextIndex(){
 function openWhatsApp(type){
   const idx = nextIndex();
   const line = WHATS_LINES[idx];
-  const msg = (type === 'usuario') ? 'hola, me creas un usuario?' : 'hola me das más información?';
+  const msg = (type === 'usuario')
+    ? 'hola, me creas un usuario?'
+    : 'hola me das más información?';
   const url=`https://wa.me/${line.num}?text=${encodeURIComponent(msg)}`;
   const w=window.open(url,'_blank','noopener');
   if(!w) location.href=url;
-
-  // Evento GA4
   window.dataLayer = window.dataLayer || [];
   dataLayer.push({'event': type==='usuario'?'click_usuario':'click_dudas'});
 }
