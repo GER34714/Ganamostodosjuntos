@@ -202,8 +202,8 @@ function openWhatsApp(type){
   const line = WHATS_LINES[idx];
   const msg = (type === 'usuario') ? 'hola, me creas un usuario?' : 'hola me das más información?';
   const url=`https://wa.me/${line.num}?text=${encodeURIComponent(msg)}`;
-  const w = window.open(url,'_blank','noopener');
-  if(!w) location.href = url;
+  const w=window.open(url,'_blank','noopener');
+  if(!w) location.href=url;
 
   // Evento GA4
   window.dataLayer = window.dataLayer || [];
