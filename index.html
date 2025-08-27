@@ -16,15 +16,6 @@
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="https://iili.io/KJpXWH7.jpg">
 
-<!-- GA4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-502569916"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-502569916');
-</script>
-
 <style>
 :root {
   --verde: #25D366;
@@ -206,11 +197,8 @@ function openWhatsApp(type){
   const url=`https://wa.me/${line.num}?text=${encodeURIComponent(msg)}`;
   const w=window.open(url,'_blank','noopener');
   if(!w) location.href=url;
-
-  // Evento GA4
-  gtag('event', type==='usuario'?'click_usuario':'click_dudas', {
-    'number': line.num
-  });
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({'event': type==='usuario'?'click_usuario':'click_dudas'});
 }
 
 document.getElementById('btn-usuario').addEventListener('click',()=>openWhatsApp('usuario'));
@@ -219,7 +207,8 @@ document.getElementById('btn-dudas').addEventListener('click',()=>openWhatsApp('
 function actualizarContador(){
   const base = 230;
   const variacion = Math.floor(Math.random()*40);
-  const total = base + variacion;
+  const total = 
+base + variacion;
   document.getElementById("contador").innerText = `Actualmente hay ${total} jugadores conectados 🎲`;
 }
 actualizarContador();
