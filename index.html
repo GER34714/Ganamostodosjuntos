@@ -16,6 +16,15 @@
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="https://iili.io/KJpXWH7.jpg">
 
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-502569916"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-502569916');
+</script>
+
 <style>
 :root {
   --verde: #25D366;
@@ -197,6 +206,11 @@ function openWhatsApp(type){
   const url=`https://wa.me/${line.num}?text=${encodeURIComponent(msg)}`;
   const w=window.open(url,'_blank','noopener');
   if(!w) location.href=url;
+
+  // GA4: enviar evento clic con número
+  gtag('event', type==='usuario'?'click_usuario':'click_dudas', {
+    'whatsapp_number': line.num
+  });
 }
 
 document.getElementById('btn-usuario').addEventListener('click',()=>openWhatsApp('usuario'));
