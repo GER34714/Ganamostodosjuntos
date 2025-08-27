@@ -6,6 +6,15 @@
 <title>FortunaPlay</title>
 <meta name="description" content="🎰 FortunaPlay - Tu nueva experiencia de juego online. Unite y participá con nosotros por premios increíbles.">
 
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-502569916"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-502569916'); 
+</script>
+
 <!-- Etiquetas Open Graph -->
 <meta property="og:title" content="FortunaPlay 🎰">
 <meta property="og:description" content="Tu nueva experiencia de juego online. Unite y participá por premios increíbles.">
@@ -16,14 +25,12 @@
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="https://iili.io/KJpXWH7.jpg">
 
-<!-- GA4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-502569916"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-502569916');
-</script>
+<!-- Canonical para SEO -->
+<link rel="canonical" href="https://tusitio.com/">
+
+<!-- Preload imágenes importantes -->
+<link rel="preload" as="image" href="https://iili.io/KJmu0S2.jpg">
+<link rel="preload" as="image" href="https://iili.io/KJpXWH7.jpg">
 
 <style>
 :root {
@@ -159,7 +166,7 @@ h1 {
   </div>
 
   <div id="btn-usuario-wrapper" class="button-group">
-    <button class="btn btn-green" id="btn-usuario">
+    <button class="btn btn-green" id="btn-usuario" aria-label="Crear usuario en WhatsApp">
       <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
       Quiero mi usuario
     </button>
@@ -168,7 +175,7 @@ h1 {
   <div id="contador">Actualmente hay 0 jugadores conectados 🎲</div>
 
   <div class="button-group">
-    <button class="btn btn-gray" id="btn-dudas">
+    <button class="btn btn-gray" id="btn-dudas" aria-label="Dudas por WhatsApp">
       <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
       DUDAS? Escribinos
     </button>
@@ -189,36 +196,83 @@ const WHATS_LINES = [
   { num: '5491132525913' }
 ];
 
-function nextIndex(){
-  const key='waIndex';
-  const current=parseInt(localStorage.getItem(key)||'-1',10);
-  const next=(isNaN(current)?0:(current+1)%WHATS_LINES.length);
-  localStorage.setItem(key,String(next));
-  return next;
+let shuffled = [];
+let currentIndex = 0;
+let lastNumber = null;
+
+// Cargar estado de localStorage si existe
+if (localStorage.getItem('shuffledList')) {
+  shuffled = JSON.parse(localStorage.getItem('shuffledList'));
+  currentIndex = parseInt(localStorage.getItem('currentIndex'), 10) || 0;
+  lastNumber = localStorage.getItem('lastNumber') || null;
 }
 
-function openWhatsApp(type){
-  const idx = nextIndex();
-  const line = WHATS_LINES[idx];
+// Función para mezclar array
+function shuffleArray(arr) {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+// Nueva lista asegurando que no arranque con el último número
+function newShuffledList() {
+  let newList;
+  do {
+    newList = shuffleArray(WHATS_LINES);
+  } while (newList[0].num === lastNumber && WHATS_LINES.length > 1);
+  return newList;
+}
+
+// Guardar estado
+function saveState() {
+  localStorage.setItem('shuffledList', JSON.stringify(shuffled));
+  localStorage.setItem('currentIndex', currentIndex);
+  localStorage.setItem('lastNumber', lastNumber);
+}
+
+// Obtener siguiente número
+function getNextLine() {
+  if (currentIndex >= shuffled.length) {
+    shuffled = newShuffledList();
+    currentIndex = 0;
+  }
+  const line = shuffled[currentIndex++];
+  lastNumber = line.num;
+  saveState();
+  return line;
+}
+
+// Abrir WhatsApp y enviar evento a GA
+function openWhatsApp(type) {
+  const line = getNextLine();
   const msg = (type === 'usuario')
     ? 'hola, me creas un usuario?'
     : 'hola me das más información?';
-  const url=`https://wa.me/${line.num}?text=${encodeURIComponent(msg)}`;
-  const w=window.open(url,'_blank','noopener');
-  if(!w) location.href=url;
+  const url = `https://wa.me/${line.num}?text=${encodeURIComponent(msg)}`;
 
-  // GA4: enviar evento clic con número
-  gtag('event', type==='usuario'?'click_usuario':'click_dudas', {
-    'whatsapp_number': line.num
-  });
+  // Evento Google Analytics
+  if (typeof gtag === 'function') {
+    gtag('event', 'click_whatsapp', { 
+      'button_type': type,
+      'whatsapp_number': line.num
+    });
+  }
+
+  const w = window.open(url, '_blank', 'noopener');
+  if (!w) location.href = url;
 }
 
-document.getElementById('btn-usuario').addEventListener('click',()=>openWhatsApp('usuario'));
-document.getElementById('btn-dudas').addEventListener('click',()=>openWhatsApp('dudas'));
+// Eventos botones
+document.getElementById('btn-usuario').addEventListener('click', () => openWhatsApp('usuario'));
+document.getElementById('btn-dudas').addEventListener('click', () => openWhatsApp('dudas'));
 
-function actualizarContador(){
+// Contador de jugadores
+function actualizarContador() {
   const base = 230;
-  const variacion = Math.floor(Math.random()*40);
+  const variacion = Math.floor(Math.random() * 40);
   const total = base + variacion;
   document.getElementById("contador").innerText = `Actualmente hay ${total} jugadores conectados 🎲`;
 }
