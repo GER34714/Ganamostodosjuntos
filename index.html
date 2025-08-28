@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fortuna Play</title>
-<meta name="description" content="🎰 Fortuna Play - Tu nueva experiencia de juego online. Unite y participá con nosotros por premios increíbles.">
+<title>FortunaPlay</title>
+<meta name="description" content="🎰 FortunaPlay - Tu nueva experiencia de juego online. Unite y participá con nosotros por premios increíbles.">
 
 <!-- Etiquetas Open Graph -->
-<meta property="og:title" content="Fortuna Play 🎰">
+<meta property="og:title" content="FortunaPlay 🎰">
 <meta property="og:description" content="Tu nueva experiencia de juego online. Unite y participá por premios increíbles.">
 <meta property="og:image" content="https://iili.io/KJmu0S2.jpg">
 <meta property="og:url" content="https://tusitio.com/">
@@ -152,7 +152,7 @@ h1 {
 <body>
 
 <div class="overlay">
-  <h1>Fortuna Play</h1>
+  <h1>FortunaPlay</h1>
   <div id="promo">
     Te creamos el usuario al instante!<br>
     ¡Te lo vas a perder? 🎲💎
@@ -180,36 +180,62 @@ h1 {
 </div>
 
 <script>
+// Lista de números con nombres
 const WHATS_LINES = [
-  { num: '5491171334027' },
-  { num: '5491156349123' },
-  { num: '5491173566830' },
-  { num: '5491123365501' },
-  { num: '5491125127839' },
-  { num: '5491132525913' }
+  {num: '5491132525913', nombre: 'Lauty'},
+  {num: '5491171334027', nombre: 'Lucas'},
+  {num: '5491156349123', nombre: 'Cami'},
+  {num: '5491173566830', nombre: 'Octavio'},
+  {num: '5491125127839', nombre: 'Facu'},
+  {num: '5491123365501', nombre: 'Joaki'},
+  {num: '5492615027973', nombre: 'Ale'}
 ];
 
-function nextIndex(){
-  const key='waIndex';
-  const current=parseInt(localStorage.getItem(key)||'-1',10);
-  const next=(isNaN(current)?0:(current+1)%WHATS_LINES.length);
-  localStorage.setItem(key,String(next));
-  return next;
+let shuffled = [];
+let currentIndex = 0;
+
+function shuffleArray(arr) {
+  let copy = arr.slice();
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function nextWhatsAppNumber() {
+  if (shuffled.length === 0 || currentIndex >= shuffled.length) {
+    shuffled = shuffleArray(WHATS_LINES);
+    if (currentIndex > 0) {
+      const last = shuffled.splice(shuffled.indexOf(shuffled[currentIndex - 1]), 1)[0];
+      shuffled.push(last);
+    }
+    currentIndex = 0;
+  }
+  const contacto = shuffled[currentIndex];
+  currentIndex++;
+  return contacto;
 }
 
 function openWhatsApp(type){
-  const idx = nextIndex();
-  const line = WHATS_LINES[idx];
-  const msg = (type === 'usuario')
-    ? 'hola, me creas un usuario?'
-    : 'hola me das más información?';
-  const url=`https://wa.me/${line.num}?text=${encodeURIComponent(msg)}`;
-  const w=window.open(url,'_blank','noopener');
-  if(!w) location.href=url;
+  const contacto = nextWhatsAppNumber();
+  let mensaje = "";
 
-  // GA4: enviar evento clic con número
+  if(type === 'usuario'){
+    mensaje = "Hola, me creas un usuario por favor?\nVengo de tu página web!";
+  } else if(type === 'dudas'){
+    mensaje = "Hola, vengo de tu página web. Me darías más información?";
+  }
+
+  const url = `https://wa.me/${contacto.num}?text=${encodeURIComponent(mensaje)}&landing=true`;
+  const w = window.open(url,'_blank','noopener');
+  if(!w) location.href = url;
+
+  // Evento GA4
   gtag('event', type==='usuario'?'click_usuario':'click_dudas', {
-    'whatsapp_number': line.num
+    'whatsapp_number': contacto.num,
+    'nombre': contacto.nombre,
+    'from_landing': true
   });
 }
 
