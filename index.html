@@ -180,42 +180,97 @@ h1 {
 </div>
 
 <script>
-const WHATS_LINES = [
-  { num: '5491171334027' },
-  { num: '5491156349123' },
-  { num: '5491173566830' },
-  { num: '5491123365501' },
-  { num: '5491125127839' },
-  { num: '5491132525913' }
+const CONTACTOS = [
+  { nombre: 'Martin', num: '5491132525913' },
+  { nombre: 'Lucas', num: '5491171334027' },
+  { nombre: 'Cami', num: '5491156349123' },
+  { nombre: 'Octavio', num: '5491173566830' },
+  { nombre: 'Joaki', num: '5491123365501' },
+  { nombre: 'Facu', num: '5491125127839' },
+  { nombre: 'Ale', num: '5492615027973' }
 ];
 
-function nextIndex(){
-  const key='waIndex';
-  const current=parseInt(localStorage.getItem(key)||'-1',10);
-  const next=(isNaN(current)?0:(current+1)%WHATS_LINES.length);
-  localStorage.setItem(key,String(next));
-  return next;
+// --------- ROTACIÓN ALEATORIA ----------
+let ronda = [];
+let ultimo = null;
+
+function nuevaRonda() {
+  let copia = [...CONTACTOS];
+  for (let i = copia.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copia[i], copia[j]] = [copia[j], copia[i]];
+  }
+  if (ultimo && copia[0].num === ultimo.num) {
+    [copia[0], copia[1]] = [copia[1], copia[0]];
+  }
+  ronda = copia;
 }
 
-function openWhatsApp(type){
-  const idx = nextIndex();
-  const line = WHATS_LINES[idx];
-  const msg = (type === 'usuario')
-    ? 'hola, me creas un usuario?'
-    : 'hola me das más información?';
-  const url=`https://wa.me/${line.num}?text=${encodeURIComponent(msg)}`;
-  const w=window.open(url,'_blank','noopener');
-  if(!w) location.href=url;
+function siguienteContacto() {
+  if (ronda.length === 0) nuevaRonda();
+  const contacto = ronda.shift();
+  ultimo = contacto;
+  return contacto;
+}
 
-  // GA4: enviar evento clic con número
-  gtag('event', type==='usuario'?'click_usuario':'click_dudas', {
-    'whatsapp_number': line.num
+// --------- BLOQUEAR BOTÓN ----------
+const BTN = document.getElementById('btn-usuario');
+const BLOQUEO_KEY = "btnBloqueadoHasta";
+
+function bloquearBoton() {
+  BTN.disabled = true;
+  BTN.innerText = 'Ya te contactaste revisa tu WhatsApp! Mucha suerte 🎉';
+}
+
+function restaurarBoton() {
+  BTN.disabled = false;
+  BTN.innerHTML = `<img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp"> Quiero mi usuario`;
+}
+
+function verificarBloqueo() {
+  const ahora = Date.now();
+  const hasta = parseInt(localStorage.getItem(BLOQUEO_KEY) || "0", 10);
+  if (ahora < hasta) {
+    bloquearBoton();
+    setTimeout(restaurarBoton, hasta - ahora);
+  }
+}
+
+// --------- ABRIR WHATSAPP ----------
+function openWhatsApp(type) {
+  const contacto = siguienteContacto();
+  let msg = '';
+
+  if (type === 'usuario') {
+    msg = `Hola ${contacto.nombre}, vengo de tu sitio web! Me creas un usuario?`;
+  } else {
+    msg = `Hola ${contacto.nombre}, me podes dar más info?`;
+  }
+
+  const url = `https://wa.me/${contacto.num}?text=${encodeURIComponent(msg)}`;
+  const w = window.open(url, '_blank', 'noopener,noreferrer');
+  if (!w) location.href = url;
+
+  // GA4: evento
+  gtag('event', type === 'usuario' ? 'click_usuario' : 'click_dudas', {
+    'whatsapp_number': contacto.num,
+    'whatsapp_name': contacto.nombre
   });
+
+  // BLOQUEO SOLO SI ES USUARIO
+  if (type === 'usuario') {
+    bloquearBoton();
+    const desbloqueo = Date.now() + 180000; // 3 minutos
+    localStorage.setItem(BLOQUEO_KEY, desbloqueo);
+    setTimeout(restaurarBoton, 180000);
+  }
 }
 
-document.getElementById('btn-usuario').addEventListener('click',()=>openWhatsApp('usuario'));
-document.getElementById('btn-dudas').addEventListener('click',()=>openWhatsApp('dudas'));
+// --------- EVENTOS ----------
+BTN.addEventListener('click', () => openWhatsApp('usuario'));
+document.getElementById('btn-dudas').addEventListener('click', () => openWhatsApp('dudas'));
 
+// --------- CONTADOR ----------
 function actualizarContador(){
   const base = 230;
   const variacion = Math.floor(Math.random()*40);
@@ -224,6 +279,9 @@ function actualizarContador(){
 }
 actualizarContador();
 setInterval(actualizarContador, 5000);
+
+// --------- AL CARGAR ----------
+verificarBloqueo();
 </script>
 
 </body>
