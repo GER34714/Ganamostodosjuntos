@@ -81,6 +81,18 @@ h1 {
 #btn-usuario-wrapper {
   margin-top:auto;
   margin-bottom:1rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+#mensaje-contacto {
+  margin-top:1rem;
+  font-size: clamp(0.9rem,2vw,1rem);
+  color: #FFD700;
+  text-shadow: 0 0 5px var(--violeta);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 
 #contador {
@@ -168,6 +180,7 @@ h1 {
       <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
       Quiero mi usuario
     </button>
+    <div id="mensaje-contacto"></div>
   </div>
 
   <div id="contador">Actualmente hay 0 jugadores conectados 🎲</div>
@@ -205,27 +218,28 @@ function nextIndex(){
   return index;
 }
 
-// SIMULADOR DE JUGADORES
-function actualizarContador(){
-  const base = 235;
-  const variacion = Math.floor(Math.random() * 56); // 235 a 290
-  const total = base + variacion;
-  document.getElementById("contador").innerText = `Actualmente hay ${total} jugadores conectados 🎲`;
+// SIMULADOR DE JUGADORES SUAVE
+let totalUsuarios = 260; // valor inicial
+function actualizarContadorSuave(){
+  const variacion = Math.floor(Math.random() * 5) - 2; // -2 a +2
+  totalUsuarios += variacion;
+  if(totalUsuarios < 235) totalUsuarios = 235;
+  if(totalUsuarios > 290) totalUsuarios = 290;
+  document.getElementById("contador").innerText = `Actualmente hay ${totalUsuarios} jugadores conectados 🎲`;
 }
-actualizarContador();
-setInterval(actualizarContador, 5000);
+setInterval(actualizarContadorSuave, 1000);
 
 // BOTONES
 const btnUsuario = document.getElementById('btn-usuario');
 const btnDudas = document.getElementById('btn-dudas');
+const mensajeContacto = document.getElementById('mensaje-contacto');
 
 btnUsuario.addEventListener('click', () => {
   const ahora = Date.now();
   const ultimoClick = localStorage.getItem('ultimoClick');
 
   if(ultimoClick && ahora - ultimoClick < 3*60*1000){
-    alert("Ya te contactaste, revisa tu WhatsApp. | Mucha suerte 🍀📲😊");
-    return;
+    return; // botón bloqueado
   }
 
   const idx = nextIndex();
@@ -236,12 +250,15 @@ btnUsuario.addEventListener('click', () => {
 
   localStorage.setItem('ultimoClick', ahora);
 
+  // Bloqueo y mensaje con fade-in
   btnUsuario.disabled = true;
-  btnUsuario.textContent = "⏳ Ya te contactaste, revisa tu WhatsApp. | Mucha suerte 🍀📲😊";
+  mensajeContacto.innerText = "Ya te contactaste, revisa tu WhatsApp. | Mucha suerte 🍀📲😊";
+  mensajeContacto.style.opacity = '1';
 
   setTimeout(()=>{
     btnUsuario.disabled = false;
-    btnUsuario.textContent = "📲 Quiero mi usuario";
+    mensajeContacto.style.opacity = '0';
+    setTimeout(()=>{ mensajeContacto.innerText = ''; },500); // limpiar texto después de fade-out
   },3*60*1000);
 });
 
