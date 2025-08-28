@@ -1,133 +1,230 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FortunaPlay</title>
-  <meta name="description" content="🎰 FortunaPlay - Tu nueva experiencia de juego online. Unite y participá con nosotros por premios increíbles.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FortunaPlay</title>
+<meta name="description" content="🎰 FortunaPlay - Tu nueva experiencia de juego online. Unite y participá con nosotros por premios increíbles.">
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: url('https://i.ibb.co/4sxwj1N/fondo-casino.jpg') no-repeat center center fixed;
-      background-size: cover;
-      margin: 0;
-      padding: 0;
-      color: white;
-      text-align: center;
-    }
-    .container {
-      background: rgba(0, 0, 0, 0.7);
-      padding: 30px;
-      border-radius: 15px;
-      max-width: 500px;
-      margin: 50px auto;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    }
-    h1 {
-      font-size: 2em;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 1.2em;
-    }
-    button {
-      background: #28a745;
-      border: none;
-      padding: 15px 25px;
-      margin: 10px;
-      font-size: 1.1em;
-      border-radius: 10px;
-      cursor: pointer;
-      color: white;
-      transition: 0.3s;
-    }
-    button:disabled {
-      background: gray;
-      cursor: not-allowed;
-    }
-    #statusMessage {
-      margin-top: 15px;
-      font-size: 1.1em;
-      color: #ffcc00;
-    }
-    small {
-      display: block;
-      margin-top: 20px;
-      font-size: 0.8em;
-      color: #bbb;
-    }
-  </style>
+<!-- Etiquetas Open Graph -->
+<meta property="og:title" content="FortunaPlay 🎰">
+<meta property="og:description" content="Tu nueva experiencia de juego online. Unite y participá por premios increíbles.">
+<meta property="og:image" content="https://iili.io/KJmu0S2.jpg">
+<meta property="og:url" content="https://tusitio.com/">
+<meta property="og:type" content="website">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="https://iili.io/KJpXWH7.jpg">
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-502569916"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-502569916');
+</script>
+
+<style>
+:root {
+  --verde: #25D366;
+  --verde-oscuro: #128C7E;
+  --gris: #555555;
+  --violeta: #7d2ae8;
+  --dorado: #FFD700;
+}
+
+*{box-sizing:border-box;}
+body {
+  margin:0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://iili.io/KJmu0S2.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+}
+
+.overlay {
+  min-height: 100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:center;
+  padding:2rem 1rem;
+}
+
+h1 {
+  font-size: clamp(3rem,8vw,6rem);
+  background: linear-gradient(135deg, var(--dorado), var(--violeta));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 15px var(--violeta), 0 0 25px var(--dorado);
+  margin:0;
+  padding-top:0.5rem;
+}
+
+#promo {
+  font-size: clamp(1rem,2vw,1.5rem);
+  margin:1.5rem 0 4rem 0;
+  line-height:1.4;
+  max-width:90%;
+}
+
+.button-group{
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+  align-items:center;
+  width:100%;
+}
+
+#btn-usuario-wrapper {
+  margin-top:auto;
+  margin-bottom:1rem;
+}
+
+#contador {
+  font-size: clamp(1rem,2vw,1.3rem);
+  font-weight: bold;
+  margin:1rem 0 1rem 0;
+  color: var(--dorado);
+  text-shadow: 0 0 10px var(--violeta);
+}
+
+.text-legal {
+  font-size: clamp(0.7rem,1.5vw,0.85rem);
+  color: #ccc;
+  max-width: 90%;
+  margin-top:1rem;
+  line-height:1.3;
+}
+
+.btn {
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+  padding:0.8rem 1.8rem;
+  border:none;
+  border-radius:50px;
+  font-size:clamp(0.9rem,2vw,1.2rem);
+  font-weight:bold;
+  color:#fff;
+  cursor:pointer;
+  text-decoration:none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-align:center;
+  max-width:300px;
+  justify-content:center;
+}
+
+.btn-green { 
+  background: linear-gradient(135deg, var(--verde-oscuro), var(--verde)); 
+  box-shadow: 0 0 10px var(--verde), 0 0 20px var(--verde), 0 0 30px var(--verde);
+  animation: glow 2s infinite alternate;
+}
+
+.btn-gray { 
+  background: linear-gradient(135deg, #666, var(--gris)); 
+  padding:0.6rem 1.5rem; 
+  box-shadow: 0 0 8px #888, 0 0 16px #555;
+}
+
+.btn:hover { 
+  transform: scale(1.05); 
+  box-shadow:0 0 20px var(--verde),0 0 40px var(--verde),0 0 60px var(--verde);
+}
+
+.btn img{ width:24px; height:24px; }
+
+@keyframes glow {
+  0%,100% { box-shadow: 0 0 10px var(--verde), 0 0 20px var(--verde), 0 0 30px var(--verde); }
+  50% { box-shadow: 0 0 20px var(--verde), 0 0 40px var(--verde), 0 0 60px var(--verde); }
+}
+
+@media (max-width:600px){
+  .overlay{padding:1rem;}
+  h1{font-size: clamp(2.5rem,10vw,4rem);}
+  #promo{margin:1.2rem 0 3rem 0;}
+  .btn{width:80%;}
+}
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>FortunaPlay</h1>
-    <p>Te creamos el usuario al instante!<br>¿Te lo vas a perder? 🎲💎</p>
 
-    <button id="userBtn">Quiero mi usuario</button>
-    <div id="statusMessage"></div>
-
-    <p>Actualmente hay 0 jugadores conectados 🎲</p>
-
-    <button id="infoBtn">Dudas? Escribinos</button>
-
-    <small>Los premios son otorgados bajo términos y condiciones. +18</small>
+<div class="overlay">
+  <h1>FortunaPlay</h1>
+  <div id="promo">
+    Te creamos el usuario al instante!<br>
+    ¡Te lo vas a perder? 🎲💎
   </div>
 
-  <script>
-    const contacts = [
-      { name: "Martin", number: "1132525913" },
-      { name: "Lucas", number: "1171334027" },
-      { name: "Cami", number: "1156349123" },
-      { name: "Octavio", number: "1173566830" },
-      { name: "Joaki", number: "1123365501" },
-      { name: "Facu", number: "1125127839" },
-      { name: "Ale", number: "5492615027973" }
-    ];
+  <div id="btn-usuario-wrapper" class="button-group">
+    <button class="btn btn-green" id="btn-usuario">
+      <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
+      Quiero mi usuario
+    </button>
+  </div>
 
-    let currentIndex = parseInt(localStorage.getItem("currentIndex")) || 0;
-    let unlockTime = parseInt(localStorage.getItem("unlockTime")) || 0;
+  <div id="contador">Actualmente hay 0 jugadores conectados 🎲</div>
 
-    const userBtn = document.getElementById("userBtn");
-    const infoBtn = document.getElementById("infoBtn");
-    const statusMessage = document.getElementById("statusMessage");
+  <div class="button-group">
+    <button class="btn btn-gray" id="btn-dudas">
+      <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
+      DUDAS? Escribinos
+    </button>
+  </div>
 
-    function updateButtonState() {
-      const now = Date.now();
-      if (now < unlockTime) {
-        userBtn.disabled = true;
-        statusMessage.innerText = "Ya te contactaste... revisá tu WhatsApp. Mucha suerte 🍀📲😊";
-      } else {
-        userBtn.disabled = false;
-        statusMessage.innerText = "";
-      }
-    }
+  <div class="text-legal">
+    Los premios son otorgados bajo términos y condiciones. +18
+  </div>
+</div>
 
-    function sendMessage(type) {
-      const contact = contacts[currentIndex];
-      let message = "";
+<script>
+const WHATS_LINES = [
+  { num: '5491171334027' },
+  { num: '5491156349123' },
+  { num: '5491173566830' },
+  { num: '5491123365501' },
+  { num: '5491125127839' },
+  { num: '5491132525913' }
+];
 
-      if (type === "user") {
-        message = `Hola ${contact.name} 😊, vengo de tu sitio web, ¿me creas un usuario por favor?`;
-        userBtn.disabled = true;
-        statusMessage.innerText = "Ya te contactaste... revisá tu WhatsApp. Mucha suerte 🍀📲😊";
-        unlockTime = Date.now() + 3 * 60 * 1000; // 3 minutos
-        localStorage.setItem("unlockTime", unlockTime);
-        currentIndex = (currentIndex + 1) % contacts.length;
-        localStorage.setItem("currentIndex", currentIndex);
-      } else if (type === "info") {
-        message = `Hola ${contact.name}, me das más información? Vengo de tu sitio web! Gracias 😊`;
-      }
+function nextIndex(){
+  const key='waIndex';
+  const current=parseInt(localStorage.getItem(key)||'-1',10);
+  const next=(isNaN(current)?0:(current+1)%WHATS_LINES.length);
+  localStorage.setItem(key,String(next));
+  return next;
+}
 
-      const url = `https://wa.me/${contact.number}?text=${encodeURIComponent(message)}`;
-      window.open(url, "_blank");
-    }
+function openWhatsApp(type){
+  const idx = nextIndex();
+  const line = WHATS_LINES[idx];
+  const msg = (type === 'usuario')
+    ? 'hola, me creas un usuario?'
+    : 'hola me das más información?';
+  const url=`https://wa.me/${line.num}?text=${encodeURIComponent(msg)}`;
+  const w=window.open(url,'_blank','noopener');
+  if(!w) location.href=url;
 
-    userBtn.addEventListener("click", () => sendMessage("user"));
-    infoBtn.addEventListener("click", () => sendMessage("info"));
+  // GA4: enviar evento clic con número
+  gtag('event', type==='usuario'?'click_usuario':'click_dudas', {
+    'whatsapp_number': line.num
+  });
+}
 
-    updateButtonState();
-    setInterval(updateButtonState, 1000);
-  </script>
+document.getElementById('btn-usuario').addEventListener('click',()=>openWhatsApp('usuario'));
+document.getElementById('btn-dudas').addEventListener('click',()=>openWhatsApp('dudas'));
+
+function actualizarContador(){
+  const base = 230;
+  const variacion = Math.floor(Math.random()*40);
+  const total = base + variacion;
+  document.getElementById("contador").innerText = `Actualmente hay ${total} jugadores conectados 🎲`;
+}
+actualizarContador();
+setInterval(actualizarContador, 5000);
+</script>
+
 </body>
 </html>
