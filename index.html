@@ -190,27 +190,10 @@ const CONTACTOS = [
   { nombre: 'Ale', num: '5492615027973' }
 ];
 
-// Rotación aleatoria
-let ronda = [];
-let ultimo = null;
-
-function nuevaRonda() {
-  let copia = [...CONTACTOS];
-  for (let i = copia.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copia[i], copia[j]] = [copia[j], copia[i]];
-  }
-  if (ultimo && copia[0].num === ultimo.num) {
-    [copia[0], copia[1]] = [copia[1], copia[0]];
-  }
-  ronda = copia;
-}
-
+// Selección 100% aleatoria
 function siguienteContacto() {
-  if (ronda.length === 0) nuevaRonda();
-  const contacto = ronda.shift();
-  ultimo = contacto;
-  return contacto;
+  const randomIndex = Math.floor(Math.random() * CONTACTOS.length);
+  return CONTACTOS[randomIndex];
 }
 
 // Bloqueo botón usuario
