@@ -3,225 +3,131 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DINASTY BET ™</title>
-  <meta name="description" content="🎰 DINASTY BET ™ - Tu experiencia definitiva de juego online. ¡Pedí tu usuario y empezá a divertirte ahora!">
-  
-  <!-- Open Graph -->
-  <meta property="og:title" content="DINASTY BET ™">
-  <meta property="og:description" content="🎰 DINASTY BET ™ - Tu experiencia definitiva de juego online. ¡Pedí tu usuario y empezá a divertirte ahora!">
-  <meta property="og:image" content="https://tusitio.com/logo.jpg">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://tusitio.com/">
-
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-502569916"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-502569916');
-  </script>
+  <title>FortunaPlay</title>
+  <meta name="description" content="🎰 FortunaPlay - Tu nueva experiencia de juego online. Unite y participá con nosotros por premios increíbles.">
 
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #111;
-      color: #fff;
+      background: url('https://i.ibb.co/4sxwj1N/fondo-casino.jpg') no-repeat center center fixed;
+      background-size: cover;
       margin: 0;
       padding: 0;
+      color: white;
       text-align: center;
     }
-    header {
-      padding: 20px;
-      background: #222;
-    }
-    header img {
-      max-width: 200px;
+    .container {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 500px;
+      margin: 50px auto;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
     h1 {
-      color: #f1c40f;
-      margin: 20px 0 10px;
+      font-size: 2em;
+      margin-bottom: 10px;
     }
     p {
-      font-size: 18px;
-      margin: 10px 0 30px;
+      font-size: 1.2em;
     }
-    .btn {
-      display: inline-block;
+    button {
+      background: #28a745;
+      border: none;
       padding: 15px 25px;
       margin: 10px;
-      font-size: 18px;
-      color: #fff;
-      background: #27ae60;
-      border: none;
+      font-size: 1.1em;
       border-radius: 10px;
       cursor: pointer;
-      text-decoration: none;
-      transition: background 0.3s ease;
+      color: white;
+      transition: 0.3s;
     }
-    .btn:hover {
-      background: #2ecc71;
+    button:disabled {
+      background: gray;
+      cursor: not-allowed;
     }
-    #contador {
-      margin: 20px 0;
-      font-size: 20px;
-      font-weight: bold;
-    }
-    #blocked-message {
-      margin: 20px auto;
-      padding: 10px;
+    #statusMessage {
+      margin-top: 15px;
+      font-size: 1.1em;
       color: #ffcc00;
-      font-size: 18px;
-      white-space: pre-line;
+    }
+    small {
+      display: block;
+      margin-top: 20px;
+      font-size: 0.8em;
+      color: #bbb;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="https://tusitio.com/logo.jpg" alt="DINASTY BET Logo">
-    <h1>🎰 DINASTY BET ™</h1>
-    <p>¡Pedí tu usuario y empezá a divertirte ahora mismo!</p>
-  </header>
+  <div class="container">
+    <h1>FortunaPlay</h1>
+    <p>Te creamos el usuario al instante!<br>¿Te lo vas a perder? 🎲💎</p>
 
-  <main>
-    <div id="contador">Actualmente hay 230 jugadores conectados 🎲</div>
-    <button id="btn-usuario" class="btn">📲 Quiero mi usuario</button>
-    <button id="btn-dudas" class="btn">ℹ️ Más información</button>
-    <div id="blocked-message"></div>
-  </main>
+    <button id="userBtn">Quiero mi usuario</button>
+    <div id="statusMessage"></div>
 
-  <footer style="margin-top:50px; padding:20px; background:#222;">
-    <p>&copy; 2025 DINASTY BET ™ - Todos los derechos reservados.</p>
-  </footer>
+    <p>Actualmente hay 0 jugadores conectados 🎲</p>
+
+    <button id="infoBtn">Dudas? Escribinos</button>
+
+    <small>Los premios son otorgados bajo términos y condiciones. +18</small>
+  </div>
 
   <script>
-    const BLOQUEO_MS = 180000; // 3 minutos
-
-    const WHATS_LINES = [
-      {name:'Martin', num:'5491132525913'},
-      {name:'Lucas', num:'5491171334027'},
-      {name:'Cami', num:'5491156349123'},
-      {name:'Octavio', num:'5491173566830'},
-      {name:'Joaki', num:'5491123365501'},
-      {name:'Facu', num:'5491125127839'},
-      {name:'Ale', num:'5492615027973'}
+    const contacts = [
+      { name: "Martin", number: "1132525913" },
+      { name: "Lucas", number: "1171334027" },
+      { name: "Cami", number: "1156349123" },
+      { name: "Octavio", number: "1173566830" },
+      { name: "Joaki", number: "1123365501" },
+      { name: "Facu", number: "1125127839" },
+      { name: "Ale", number: "5492615027973" }
     ];
 
-    let shuffled = [];
-    let currentIndex = 0;
-    let lastNumber = null;
-    let blockedUntil = 0;
-    let blockedMessage = '';
-    let blockedName = '';
+    let currentIndex = parseInt(localStorage.getItem("currentIndex")) || 0;
+    let unlockTime = parseInt(localStorage.getItem("unlockTime")) || 0;
 
-    // Cargar estado previo
-    if(localStorage.getItem('shuffledList')){
-      shuffled = JSON.parse(localStorage.getItem('shuffledList'));
-      currentIndex = parseInt(localStorage.getItem('currentIndex'),10)||0;
-      lastNumber = localStorage.getItem('lastNumber')||null;
-      blockedUntil = parseInt(localStorage.getItem('blockedUntil'),10)||0;
-      blockedMessage = localStorage.getItem('blockedMessage')||'';
-      blockedName = localStorage.getItem('blockedName')||'';
-    }
+    const userBtn = document.getElementById("userBtn");
+    const infoBtn = document.getElementById("infoBtn");
+    const statusMessage = document.getElementById("statusMessage");
 
-    function shuffleArray(arr){
-      const copy = [...arr];
-      for(let i=copy.length-1;i>0;i--){
-        const j = Math.floor(Math.random()*(i+1));
-        [copy[i],copy[j]]=[copy[j],copy[i]];
-      }
-      return copy;
-    }
-
-    function newShuffledList(){
-      let newList;
-      do{
-        newList = shuffleArray(WHATS_LINES);
-      }while(newList[0].num===lastNumber && WHATS_LINES.length>1);
-      return newList;
-    }
-
-    function saveState(){
-      localStorage.setItem('shuffledList',JSON.stringify(shuffled));
-      localStorage.setItem('currentIndex',currentIndex);
-      localStorage.setItem('lastNumber',lastNumber);
-      localStorage.setItem('blockedUntil',blockedUntil);
-      localStorage.setItem('blockedMessage',blockedMessage);
-      localStorage.setItem('blockedName',blockedName);
-    }
-
-    function getNextLineUsuario(){
+    function updateButtonState() {
       const now = Date.now();
-      if(now < blockedUntil){
-        return { num:lastNumber, message:blockedMessage, name:blockedName };
-      }
-      if(currentIndex>=shuffled.length){
-        shuffled=newShuffledList();
-        currentIndex=0;
-      }
-      const line = shuffled[currentIndex++];
-      lastNumber=line.num;
-      blockedName=line.name;
-      blockedMessage=`YA TE CONTACTASTE con ${line.name}...\nrevisá tu WhatsApp.\nMucha suerte 🍀📲😊`;
-      blockedUntil=now+BLOQUEO_MS;
-      saveState();
-      return { num:line.num, message:blockedMessage, name:line.name };
-    }
-
-    function openWhatsAppUsuario(){
-      const line = getNextLineUsuario();
-      const msg = `Hola ${line.name} 😊, vengo de tu sitio web, ¿me creas un usuario por favor?`;
-
-      document.getElementById('blocked-message').innerText=line.message;
-      document.getElementById('btn-usuario').disabled=true;
-      
-      setTimeout(()=>{
-        document.getElementById('btn-usuario').disabled=false;
-        document.getElementById('blocked-message').innerText='';
-      }, BLOQUEO_MS);
-      
-      const url=`https://wa.me/${line.num}?text=${encodeURIComponent(msg)}`;
-      const w=window.open(url,'_blank','noopener');
-      if(!w) location.href=url;
-      if(typeof gtag==='function'){
-        gtag('event','click_whatsapp',{button_type:'usuario',whatsapp_number:line.num});
+      if (now < unlockTime) {
+        userBtn.disabled = true;
+        statusMessage.innerText = "Ya te contactaste... revisá tu WhatsApp. Mucha suerte 🍀📲😊";
+      } else {
+        userBtn.disabled = false;
+        statusMessage.innerText = "";
       }
     }
 
-    let dudaIndex=0;
-    function openWhatsAppDudas(){
-      const line = WHATS_LINES[dudaIndex++];
-      if(dudaIndex>=WHATS_LINES.length) dudaIndex=0;
-      const msg=`Hola ${line.name} 😊, me das más información? Vengo de tu sitio web! Gracias`;
-      const url=`https://wa.me/${line.num}?text=${encodeURIComponent(msg)}`;
-      const w=window.open(url,'_blank','noopener');
-      if(!w) location.href=url;
-      if(typeof gtag==='function'){
-        gtag('event','click_whatsapp',{button_type:'dudas',whatsapp_number:line.num});
+    function sendMessage(type) {
+      const contact = contacts[currentIndex];
+      let message = "";
+
+      if (type === "user") {
+        message = `Hola ${contact.name} 😊, vengo de tu sitio web, ¿me creas un usuario por favor?`;
+        userBtn.disabled = true;
+        statusMessage.innerText = "Ya te contactaste... revisá tu WhatsApp. Mucha suerte 🍀📲😊";
+        unlockTime = Date.now() + 3 * 60 * 1000; // 3 minutos
+        localStorage.setItem("unlockTime", unlockTime);
+        currentIndex = (currentIndex + 1) % contacts.length;
+        localStorage.setItem("currentIndex", currentIndex);
+      } else if (type === "info") {
+        message = `Hola ${contact.name}, me das más información? Vengo de tu sitio web! Gracias 😊`;
       }
+
+      const url = `https://wa.me/${contact.number}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank");
     }
 
-    document.getElementById('btn-usuario').addEventListener('click',openWhatsAppUsuario);
-    document.getElementById('btn-dudas').addEventListener('click',openWhatsAppDudas);
+    userBtn.addEventListener("click", () => sendMessage("user"));
+    infoBtn.addEventListener("click", () => sendMessage("info"));
 
-    function actualizarContador(){
-      const base=230;
-      const variacion=Math.floor(Math.random()*40);
-      const total=base+variacion;
-      document.getElementById("contador").innerText=`Actualmente hay ${total} jugadores conectados 🎲`;
-    }
-    actualizarContador();
-    setInterval(actualizarContador,5000);
-
-    const now=Date.now();
-    if(now<blockedUntil && blockedMessage){
-      document.getElementById('blocked-message').innerText=blockedMessage;
-      document.getElementById('btn-usuario').disabled=true;
-      setTimeout(()=>{
-        document.getElementById('btn-usuario').disabled=false;
-        document.getElementById('blocked-message').innerText='';
-      }, blockedUntil-now);
-    }
+    updateButtonState();
+    setInterval(updateButtonState, 1000);
   </script>
 </body>
 </html>
