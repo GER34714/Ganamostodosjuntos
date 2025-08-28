@@ -9,10 +9,10 @@
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-502569916"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-502569916'); 
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-502569916'); 
 </script>
 
 <!-- Etiquetas Open Graph -->
@@ -34,252 +34,114 @@
 
 <style>
 :root {
-  --verde: #25D366;
-  --verde-oscuro: #128C7E;
-  --gris: #555555;
-  --violeta: #7d2ae8;
-  --dorado: #FFD700;
+  --verde: #25D366;
+  --verde-oscuro: #128C7E;
+  --gris: #555555;
+  --violeta: #7d2ae8;
+  --dorado: #FFD700;
 }
 
 *{box-sizing:border-box;}
 body {
-  margin:0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://iili.io/KJmu0S2.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color: #fff;
-  text-align: center;
+  margin:0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://iili.io/KJmu0S2.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
 }
 
-.overlay {
-  min-height: 100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-start;
-  align-items:center;
-  padding:2rem 1rem;
+header {
+  padding: 20px;
+}
+header img {
+  width: 150px;
+  border-radius: 50%;
+  border: 3px solid var(--dorado);
+  box-shadow: 0 0 15px var(--dorado);
 }
 
 h1 {
-  font-size: clamp(3rem,8vw,6rem);
-  background: linear-gradient(135deg, var(--dorado), var(--violeta));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 15px var(--violeta), 0 0 25px var(--dorado);
-  margin:0;
-  padding-top:0.5rem;
+  font-size: 2.5em;
+  color: var(--dorado);
+  text-shadow: 2px 2px 4px #000;
+}
+p {
+  font-size: 1.2em;
 }
 
-#promo {
-  font-size: clamp(1rem,2vw,1.5rem);
-  margin:1.5rem 0 4rem 0;
-  line-height:1.4;
-  max-width:90%;
+.container {
+  margin: 30px auto;
+  max-width: 600px;
+  background: rgba(0,0,0,0.7);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px #000;
 }
 
-.button-group{
-  display:flex;
-  flex-direction:column;
-  gap:1rem;
-  align-items:center;
-  width:100%;
+button {
+  background: var(--verde);
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  font-size: 1.2em;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 15px;
+}
+button:hover {
+  background: var(--verde-oscuro);
 }
 
-#btn-usuario-wrapper {
-  margin-top:auto;
-  margin-bottom:1rem;
+footer {
+  margin-top: 30px;
+  font-size: 0.9em;
+  color: #ccc;
 }
 
-#contador {
-  font-size: clamp(1rem,2vw,1.3rem);
-  font-weight: bold;
-  margin:1rem 0 1rem 0;
-  color: var(--dorado);
-  text-shadow: 0 0 10px var(--violeta);
-}
-
-.text-legal {
-  font-size: clamp(0.7rem,1.5vw,0.85rem);
-  color: #ccc;
-  max-width: 90%;
-  margin-top:1rem;
-  line-height:1.3;
-}
-
-.btn {
-  display:inline-flex;
-  align-items:center;
-  gap:0.5rem;
-  padding:0.8rem 1.8rem;
-  border:none;
-  border-radius:50px;
-  font-size:clamp(0.9rem,2vw,1.2rem);
-  font-weight:bold;
-  color:#fff;
-  cursor:pointer;
-  text-decoration:none;
-  transition: transform 0.2s, box-shadow 0.2s;
-  text-align:center;
-  max-width:300px;
-  justify-content:center;
-}
-
-.btn-green { 
-  background: linear-gradient(135deg, var(--verde-oscuro), var(--verde)); 
-  box-shadow: 0 0 10px var(--verde), 0 0 20px var(--verde), 0 0 30px var(--verde);
-  animation: glow 2s infinite alternate;
-}
-
-.btn-gray { 
-  background: linear-gradient(135deg, #666, var(--gris)); 
-  padding:0.6rem 1.5rem; 
-  box-shadow: 0 0 8px #888, 0 0 16px #555;
-}
-
-.btn:hover { 
-  transform: scale(1.05); 
-  box-shadow:0 0 20px var(--verde),0 0 40px var(--verde),0 0 60px var(--verde);
-}
-
-.btn img{ width:24px; height:24px; }
-
-@keyframes glow {
-  0%,100% { box-shadow: 0 0 10px var(--verde), 0 0 20px var(--verde), 0 0 30px var(--verde); }
-  50% { box-shadow: 0 0 20px var(--verde), 0 0 40px var(--verde), 0 0 60px var(--verde); }
-}
-
-@media (max-width:600px){
-  .overlay{padding:1rem;}
-  h1{font-size: clamp(2.5rem,10vw,4rem);}
-  #promo{margin:1.2rem 0 3rem 0;}
-  .btn{width:80%;}
-}
 </style>
 </head>
 <body>
+<header>
+  <img src="https://iili.io/KJpXWH7.jpg" alt="Logo FortunaPlay">
+  <h1>🎰 Bienvenido a FortunaPlay 🎰</h1>
+</header>
 
-<div class="overlay">
-  <h1>FortunaPlay</h1>
-  <div id="promo">
-    Te creamos el usuario al instante!<br>
-    ¡Te lo vas a perder? 🎲💎
-  </div>
-
-  <div id="btn-usuario-wrapper" class="button-group">
-    <button class="btn btn-green" id="btn-usuario" aria-label="Crear usuario en WhatsApp">
-      <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
-      Quiero mi usuario
-    </button>
-  </div>
-
-  <div id="contador">Actualmente hay 0 jugadores conectados 🎲</div>
-
-  <div class="button-group">
-    <button class="btn btn-gray" id="btn-dudas" aria-label="Dudas por WhatsApp">
-      <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
-      DUDAS? Escribinos
-    </button>
-  </div>
-
-  <div class="text-legal">
-    Los premios son otorgados bajo términos y condiciones. +18
-  </div>
+<div class="container">
+  <p>Tu nueva experiencia de juego online. Unite y participá con nosotros por premios increíbles.</p>
+  
+  <button id="whatsappBtn">💬 Contactar por WhatsApp</button>
+  <p id="contador"></p>
 </div>
 
+<footer>
+  <p>&copy; 2025 FortunaPlay. Todos los derechos reservados.</p>
+</footer>
+
 <script>
-const WHATS_LINES = [
-  { num: '5491171334027' },
-  { num: '5491156349123' },
-  { num: '5491173566830' },
-  { num: '5491123365501' },
-  { num: '5491125127839' },
-  { num: '5491132525913' }
+const numeros = [
+  "5491125127839",
+  "5491133344455",
+  "5491144455566"
 ];
 
-let shuffled = [];
-let currentIndex = 0;
-let lastNumber = null;
+document.getElementById("whatsappBtn").addEventListener("click", function() {
+  const numero = numeros[Math.floor(Math.random() * numeros.length)];
+  const mensaje = encodeURIComponent("¡Hola! Quiero más info sobre FortunaPlay 🎰");
+  window.open(`https://wa.me/${numero}?text=${mensaje}`, "_blank");
+});
 
-// Cargar estado de localStorage si existe
-if (localStorage.getItem('shuffledList')) {
-  shuffled = JSON.parse(localStorage.getItem('shuffledList'));
-  currentIndex = parseInt(localStorage.getItem('currentIndex'), 10) || 0;
-  lastNumber = localStorage.getItem('lastNumber') || null;
-}
-
-// Función para mezclar array
-function shuffleArray(arr) {
-  const copy = [...arr];
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
-}
-
-// Nueva lista asegurando que no arranque con el último número
-function newShuffledList() {
-  let newList;
-  do {
-    newList = shuffleArray(WHATS_LINES);
-  } while (newList[0].num === lastNumber && WHATS_LINES.length > 1);
-  return newList;
-}
-
-// Guardar estado
-function saveState() {
-  localStorage.setItem('shuffledList', JSON.stringify(shuffled));
-  localStorage.setItem('currentIndex', currentIndex);
-  localStorage.setItem('lastNumber', lastNumber);
-}
-
-// Obtener siguiente número
-function getNextLine() {
-  if (currentIndex >= shuffled.length) {
-    shuffled = newShuffledList();
-    currentIndex = 0;
-  }
-  const line = shuffled[currentIndex++];
-  lastNumber = line.num;
-  saveState();
-  return line;
-}
-
-// Abrir WhatsApp y enviar evento a GA
-function openWhatsApp(type) {
-  const line = getNextLine();
-  const msg = (type === 'usuario')
-    ? 'hola, me creas un usuario?'
-    : 'hola me das más información?';
-  const url = `https://wa.me/${line.num}?text=${encodeURIComponent(msg)}`;
-
-  // Evento Google Analytics
-  if (typeof gtag === 'function') {
-    gtag('event', 'click_whatsapp', { 
-      'button_type': type,
-      'whatsapp_number': line.num
-    });
-  }
-
-  const w = window.open(url, '_blank', 'noopener');
-  if (!w) location.href = url;
-}
-
-// Eventos botones
-document.getElementById('btn-usuario').addEventListener('click', () => openWhatsApp('usuario'));
-document.getElementById('btn-dudas').addEventListener('click', () => openWhatsApp('dudas'));
-
-// Contador de jugadores
 function actualizarContador() {
-  const base = 230;
-  c
+  const base = 150; 
+  c
 onst variacion = Math.floor(Math.random() * 40);
-  const total = base + variacion;
-  document.getElementById("contador").innerText = `Actualmente hay ${total} jugadores conectados 🎲`;
+  const jugando = base + variacion;
+  document.getElementById("contador").textContent = `🎮 Jugadores activos ahora: ${jugando}`;
 }
-actualizarContador();
-setInterval(actualizarContador, 5000);
-</script>
 
+setInterval(actualizarContador, 3000);
+actualizarContador();
+</script>
 </body>
 </html>
