@@ -6,14 +6,12 @@
 <title>FortunaPlay</title>
 <meta name="description" content="🎰 FortunaPlay - Tu nueva experiencia de juego online. Unite y participá con nosotros por premios increíbles.">
 
-<!-- Etiquetas Open Graph -->
 <meta property="og:title" content="FortunaPlay 🎰">
 <meta property="og:description" content="Tu nueva experiencia de juego online. Unite y participá por premios increíbles.">
 <meta property="og:image" content="https://iili.io/KJmu0S2.jpg">
 <meta property="og:url" content="https://tusitio.com/">
 <meta property="og:type" content="website">
 
-<!-- Favicon -->
 <link rel="icon" type="image/png" href="https://iili.io/KJpXWH7.jpg">
 
 <!-- GA4 -->
@@ -111,7 +109,7 @@ h1 {
   color:#fff;
   cursor:pointer;
   text-decoration:none;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s;
   text-align:center;
   max-width:300px;
   justify-content:center;
@@ -135,6 +133,18 @@ h1 {
 }
 
 .btn img{ width:24px; height:24px; }
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+#mensaje-bloqueo {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  color: #FFD700;
+  text-shadow: 0 0 10px var(--violeta);
+}
 
 @keyframes glow {
   0%,100% { box-shadow: 0 0 10px var(--verde), 0 0 20px var(--verde), 0 0 30px var(--verde); }
@@ -174,13 +184,14 @@ h1 {
     </button>
   </div>
 
+  <div id="mensaje-bloqueo"></div>
+
   <div class="text-legal">
     Los premios son otorgados bajo términos y condiciones. +18
   </div>
 </div>
 
 <script>
-// Lista de números con nombres
 const WHATS_LINES = [
   {num: '5491132525913', nombre: 'Lauty'},
   {num: '5491171334027', nombre: 'Lucas'},
@@ -193,7 +204,10 @@ const WHATS_LINES = [
 
 let shuffled = [];
 let currentIndex = 0;
+let lastNum = null;
+const SHEET_URL = "TU_URL_DEL_WEB_APP";
 
+// Mezclar array
 function shuffleArray(arr) {
   let copy = arr.slice();
   for (let i = copy.length - 1; i > 0; i--) {
@@ -203,45 +217,64 @@ function shuffleArray(arr) {
   return copy;
 }
 
+// Siguiente número evitando consecutivos iguales
 function nextWhatsAppNumber() {
   if (shuffled.length === 0 || currentIndex >= shuffled.length) {
     shuffled = shuffleArray(WHATS_LINES);
-    if (currentIndex > 0) {
-      const last = shuffled.splice(shuffled.indexOf(shuffled[currentIndex - 1]), 1)[0];
-      shuffled.push(last);
-    }
     currentIndex = 0;
   }
-  const contacto = shuffled[currentIndex];
+  let contacto = shuffled[currentIndex];
+  if(lastNum && contacto.num === lastNum) {
+    currentIndex = (currentIndex + 1) % shuffled.length;
+    contacto = shuffled[currentIndex];
+  }
   currentIndex++;
+  lastNum = contacto.num;
   return contacto;
 }
 
-function openWhatsApp(type){
-  const contacto = nextWhatsAppNumber();
-  let mensaje = "";
+// Revisar si ya se contactó
+function bloquearBotones(){
+  document.getElementById('btn-usuario').classList.add('disabled');
+  document.getElementById('btn-dudas').classList.add('disabled');
+  document.getElementById('btn-usuario').disabled = true;
+  document.getElementById('btn-dudas').disabled = true;
+  document.getElementById('mensaje-bloqueo').innerText = "¡Ya te contactaste! Revisa tu WhatsApp.";
+}
 
-  if(type === 'usuario'){
-    mensaje = "Hola, me creas un usuario por favor?\nVengo de tu página web!";
-  } else if(type === 'dudas'){
-    mensaje = "Hola, vengo de tu página web. Me darías más información?";
-  }
+if(localStorage.getItem('yaContacto')) {
+  bloquearBotones();
+}
+
+function openWhatsApp(type){
+  if(localStorage.getItem('yaContacto')) return;
+
+  const contacto = nextWhatsAppNumber();
+  let mensaje = type==='usuario' 
+    ? `Hola ${contacto.nombre}, me creas un usuario por favor?\nVengo de tu página web!` 
+    : `Hola ${contacto.nombre}, vengo de tu página web. Me darías más información?`;
 
   const url = `https://wa.me/${contacto.num}?text=${encodeURIComponent(mensaje)}&landing=true`;
   const w = window.open(url,'_blank','noopener');
   if(!w) location.href = url;
 
-  // Evento GA4
   gtag('event', type==='usuario'?'click_usuario':'click_dudas', {
     'whatsapp_number': contacto.num,
     'nombre': contacto.nombre,
     'from_landing': true
   });
+
+  fetch(`${SHEET_URL}?tipo=${type}&numero=${contacto.num}&nombre=${contacto.nombre}`)
+    .catch(err => console.log("Error guardando en Sheet:", err));
+
+  localStorage.setItem('yaContacto','true');
+  bloquearBotones();
 }
 
 document.getElementById('btn-usuario').addEventListener('click',()=>openWhatsApp('usuario'));
 document.getElementById('btn-dudas').addEventListener('click',()=>openWhatsApp('dudas'));
 
+// Contador aleatorio
 function actualizarContador(){
   const base = 230;
   const variacion = Math.floor(Math.random()*40);
@@ -251,6 +284,5 @@ function actualizarContador(){
 actualizarContador();
 setInterval(actualizarContador, 5000);
 </script>
-
 </body>
 </html>
