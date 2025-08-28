@@ -1,309 +1,133 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FortunaPlay</title>
-<meta name="description" content="🎰 FortunaPlay - Tu nueva experiencia de juego online. Unite y participá con nosotros por premios increíbles.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FortunaPlay</title>
+  <meta name="description" content="🎰 FortunaPlay - Tu nueva experiencia de juego online. Unite y participá con nosotros por premios increíbles.">
 
-<!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-502569916"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-502569916');
-</script>
-
-<style>
-:root {
-  --verde: #25D366;
-  --verde-oscuro: #128C7E;
-  --gris: #555555;
-  --violeta: #7d2ae8;
-  --dorado: #FFD700;
-}
-
-*{box-sizing:border-box;}
-body {
-  margin:0;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://iili.io/KJmu0S2.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color:#fff;
-  text-align:center;
-}
-
-.overlay {
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-start;
-  align-items:center;
-  padding:2rem 1rem;
-}
-
-h1 {
-  font-size:clamp(3rem,8vw,6rem);
-  background: linear-gradient(135deg,var(--dorado),var(--violeta));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  text-shadow:0 0 15px var(--violeta),0 0 25px var(--dorado);
-  margin:0;
-  padding-top:0.5rem;
-}
-
-#promo {
-  font-size:clamp(1rem,2vw,1.5rem);
-  margin:1.5rem 0 4rem 0;
-  line-height:1.4;
-  max-width:90%;
-}
-
-.button-group{
-  display:flex;
-  flex-direction:column;
-  gap:1rem;
-  align-items:center;
-  width:100%;
-}
-
-#btn-usuario-wrapper {
-  margin-top:auto;
-  margin-bottom:1rem;
-}
-
-#mensaje-bloqueo {
-  margin-top:0.8rem;
-  font-size:1rem;
-  color:#FFD700;
-  text-shadow:0 0 5px #7d2ae8;
-  text-align:center;
-}
-
-#contador {
-  font-size:clamp(1rem,2vw,1.3rem);
-  font-weight:bold;
-  margin:1rem 0 1rem 0;
-  color:var(--dorado);
-  text-shadow:0 0 10px var(--violeta);
-  transition: all 0.5s ease;
-}
-
-.text-legal {
-  font-size:clamp(0.7rem,1.5vw,0.85rem);
-  color:#ccc;
-  max-width:90%;
-  margin-top:1rem;
-  line-height:1.3;
-}
-
-.btn {
-  display:inline-flex;
-  align-items:center;
-  gap:0.5rem;
-  padding:0.8rem 1.8rem;
-  border:none;
-  border-radius:50px;
-  font-size:clamp(0.9rem,2vw,1.2rem);
-  font-weight:bold;
-  color:#fff;
-  cursor:pointer;
-  text-decoration:none;
-  transition: transform 0.2s, box-shadow 0.2s;
-  text-align:center;
-  max-width:300px;
-  justify-content:center;
-}
-
-.btn-green { 
-  background: linear-gradient(135deg,var(--verde-oscuro),var(--verde)); 
-  box-shadow:0 0 10px var(--verde),0 0 20px var(--verde),0 0 30px var(--verde);
-  animation: glow 2s infinite alternate;
-}
-
-.btn-gray { 
-  background: linear-gradient(135deg,#666,var(--gris)); 
-  padding:0.6rem 1.5rem; 
-  box-shadow:0 0 8px #888,0 0 16px #555;
-}
-
-.btn:hover { 
-  transform:scale(1.05); 
-  box-shadow:0 0 20px var(--verde),0 0 40px var(--verde),0 0 60px var(--verde);
-}
-
-.btn img{ width:24px; height:24px; }
-
-@keyframes glow {
-  0%,100%{ box-shadow:0 0 10px var(--verde),0 0 20px var(--verde),0 0 30px var(--verde);}
-  50%{ box-shadow:0 0 20px var(--verde),0 0 40px var(--verde),0 0 60px var(--verde);}
-}
-
-@media (max-width:600px){
-  .overlay{padding:1rem;}
-  h1{font-size:clamp(2.5rem,10vw,4rem);}
-  #promo{margin:1.2rem 0 3rem 0;}
-  .btn{width:80%;}
-}
-</style>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('https://i.ibb.co/4sxwj1N/fondo-casino.jpg') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      color: white;
+      text-align: center;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 500px;
+      margin: 50px auto;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.2em;
+    }
+    button {
+      background: #28a745;
+      border: none;
+      padding: 15px 25px;
+      margin: 10px;
+      font-size: 1.1em;
+      border-radius: 10px;
+      cursor: pointer;
+      color: white;
+      transition: 0.3s;
+    }
+    button:disabled {
+      background: gray;
+      cursor: not-allowed;
+    }
+    #statusMessage {
+      margin-top: 15px;
+      font-size: 1.1em;
+      color: #ffcc00;
+    }
+    small {
+      display: block;
+      margin-top: 20px;
+      font-size: 0.8em;
+      color: #bbb;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <h1>FortunaPlay</h1>
+    <p>Te creamos el usuario al instante!<br>¿Te lo vas a perder? 🎲💎</p>
 
-<div class="overlay">
-  <h1>FortunaPlay</h1>
-  <div id="promo">
-    Te creamos el usuario al instante!<br>
-    ¡Te lo vas a perder? 🎲💎
+    <button id="userBtn">Quiero mi usuario</button>
+    <div id="statusMessage"></div>
+
+    <p>Actualmente hay 0 jugadores conectados 🎲</p>
+
+    <button id="infoBtn">Dudas? Escribinos</button>
+
+    <small>Los premios son otorgados bajo términos y condiciones. +18</small>
   </div>
 
-  <div id="btn-usuario-wrapper" class="button-group">
-    <button class="btn btn-green" id="btn-usuario" aria-label="Crear usuario en WhatsApp">
-      <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
-      Quiero mi usuario
-    </button>
-    <div id="mensaje-bloqueo"></div>
-  </div>
+  <script>
+    const contacts = [
+      { name: "Martin", number: "1132525913" },
+      { name: "Lucas", number: "1171334027" },
+      { name: "Cami", number: "1156349123" },
+      { name: "Octavio", number: "1173566830" },
+      { name: "Joaki", number: "1123365501" },
+      { name: "Facu", number: "1125127839" },
+      { name: "Ale", number: "5492615027973" }
+    ];
 
-  <div id="contador">Actualmente hay 0 jugadores conectados 🎲</div>
+    let currentIndex = parseInt(localStorage.getItem("currentIndex")) || 0;
+    let unlockTime = parseInt(localStorage.getItem("unlockTime")) || 0;
 
-  <div class="button-group">
-    <button class="btn btn-gray" id="btn-dudas" aria-label="Dudas por WhatsApp">
-      <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
-      DUDAS? Escribinos
-    </button>
-  </div>
+    const userBtn = document.getElementById("userBtn");
+    const infoBtn = document.getElementById("infoBtn");
+    const statusMessage = document.getElementById("statusMessage");
 
-  <div class="text-legal">
-    Los premios son otorgados bajo términos y condiciones. +18
-  </div>
-</div>
+    function updateButtonState() {
+      const now = Date.now();
+      if (now < unlockTime) {
+        userBtn.disabled = true;
+        statusMessage.innerText = "Ya te contactaste... revisá tu WhatsApp. Mucha suerte 🍀📲😊";
+      } else {
+        userBtn.disabled = false;
+        statusMessage.innerText = "";
+      }
+    }
 
-<script>
-const WHATS_LINES = [
-  {name:"Martin", num:"5491132525913"},
-  {name:"Lucas", num:"5491171334027"},
-  {name:"Cami", num:"5491156349123"},
-  {name:"Octavio", num:"5491173566830"},
-  {name:"Joaki", num:"5491123365501"},
-  {name:"Facu", num:"5491125127839"},
-  {name:"Ale", num:"+5492615027973"}
-];
+    function sendMessage(type) {
+      const contact = contacts[currentIndex];
+      let message = "";
 
-const BLOQUEO_MS = 180000; // 3 minutos
-let shuffled = [];
-let currentIndex = 0;
-let lastNumber = null;
-let blockedUntil = null;
-let blockedMessage = null;
+      if (type === "user") {
+        message = `Hola ${contact.name} 😊, vengo de tu sitio web, ¿me creas un usuario por favor?`;
+        userBtn.disabled = true;
+        statusMessage.innerText = "Ya te contactaste... revisá tu WhatsApp. Mucha suerte 🍀📲😊";
+        unlockTime = Date.now() + 3 * 60 * 1000; // 3 minutos
+        localStorage.setItem("unlockTime", unlockTime);
+        currentIndex = (currentIndex + 1) % contacts.length;
+        localStorage.setItem("currentIndex", currentIndex);
+      } else if (type === "info") {
+        message = `Hola ${contact.name}, me das más información? Vengo de tu sitio web! Gracias 😊`;
+      }
 
-// Cargar estado
-if(localStorage.getItem('shuffledList')){
-  shuffled = JSON.parse(localStorage.getItem('shuffledList'));
-  currentIndex = parseInt(localStorage.getItem('currentIndex'),10)||0;
-  lastNumber = localStorage.getItem('lastNumber')||null;
-  blockedUntil = parseInt(localStorage.getItem('blockedUntil'),10)||null;
-  blockedMessage = localStorage.getItem('blockedMessage')||null;
-}
+      const url = `https://wa.me/${contact.number}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank");
+    }
 
-// Mezclar array
-function shuffleArray(arr){
-  const copy=[...arr];
-  for(let i=copy.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [copy[i],copy[j]]=[copy[j],copy[i]];
-  }
-  return copy;
-}
+    userBtn.addEventListener("click", () => sendMessage("user"));
+    infoBtn.addEventListener("click", () => sendMessage("info"));
 
-// Nueva lista evitando repetir último número
-function newShuffledList(){
-  let newList;
-  do{
-    newList = shuffleArray(WHATS_LINES);
-  }while(newList[0].num===lastNumber && WHATS_LINES.length>1);
-  return newList;
-}
-
-// Guardar estado
-function saveState(){
-  localStorage.setItem('shuffledList',JSON.stringify(shuffled));
-  localStorage.setItem('currentIndex',currentIndex);
-  localStorage.setItem('lastNumber',lastNumber);
-  localStorage.setItem('blockedUntil',blockedUntil);
-  localStorage.setItem('blockedMessage',blockedMessage);
-}
-
-// Obtener siguiente número
-function getNextLine(){
-  const now=Date.now();
-  if(blockedUntil && now<blockedUntil){
-    return { num:lastNumber, message:blockedMessage };
-  }
-  if(currentIndex>=shuffled.length){
-    shuffled=newShuffledList();
-    currentIndex=0;
-  }
-  const line=shuffled[currentIndex++];
-  lastNumber=line.num;
-  blockedMessage="YA TE CONTACTASTE...\nrevisá tu WhatsApp.\nMucha suerte 🍀📲😊";
-  blockedUntil=now+BLOQUEO_MS;
-  saveState();
-  return { num:line.num, message:blockedMessage, name:line.name };
-}
-
-// Mostrar bloqueo al cargar
-function mostrarBloqueo(){
-  const now=Date.now();
-  const mensajeDiv=document.getElementById("mensaje-bloqueo");
-  const btn=document.getElementById("btn-usuario");
-  if(blockedUntil && now<blockedUntil){
-    mensajeDiv.innerText=blockedMessage;
-    btn.disabled=true;
-    setTimeout(()=>{
-      mensajeDiv.innerText="";
-      btn.disabled=false;
-    },blockedUntil-now);
-  }
-}
-
-// Abrir WhatsApp
-function openWhatsApp(){
-  const { num, message, name }=getNextLine();
-  const waMsg=`Hola ${name} 😊,\nvengo de tu sitio web, ¿me creas un usuario por favor?`;
-  window.open(`https://wa.me/${num}?text=${encodeURIComponent(waMsg)}`,"_blank","noopener");
-
-  const mensajeDiv=document.getElementById("mensaje-bloqueo");
-  const btn=document.getElementById("btn-usuario");
-  mensajeDiv.innerText=message;
-  btn.disabled=true;
-
-  setTimeout(()=>{
-    mensajeDiv.innerText="";
-    btn.disabled=false;
-    blockedUntil=null;
-    saveState();
-  },BLOQUEO_MS);
-}
-
-// Eventos
-document.getElementById("btn-usuario").addEventListener("click",openWhatsApp);
-document.getElementById("btn-dudas").addEventListener("click",()=>{
-  window.open("https://wa.me/5491125127839?text="+encodeURIComponent("Hola, me das más información?"),"_blank","noopener");
-});
-
-// Contador suave
-let contadorBase=230;
-function actualizarContador(){
-  let variacion=Math.floor(Math.random()*40);
-  let total=contadorBase+variacion;
-  document.getElementById("contador").innerText=`Actualmente hay ${total} jugadores conectados 🎲`;
-}
-actualizarContador();
-setInterval(actualizarContador,5000);
-
-mostrarBloqueo();
-</script>
-
+    updateButtonState();
+    setInterval(updateButtonState, 1000);
+  </script>
 </body>
 </html>
