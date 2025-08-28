@@ -1,137 +1,259 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FortunaPlay</title>
-  <meta name="description" content="🎰 FortunaPlay - Tu nueva experiencia de juego online. Unite y participá con nosotros por premios increíbles.">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: url('https://i.ibb.co/gdcdZL8/fondo-casino.jpg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: Arial, sans-serif;
-      color: #fff;
-      text-align: center;
-    }
-    .overlay {
-      background: rgba(0, 0, 0, 0.6);
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
-    h1 {
-      margin-top: 20px;
-      font-size: 2.5em;
-      color: gold;
-      text-shadow: 2px 2px 5px black;
-    }
-    p {
-      font-size: 1.3em;
-      margin: 10px;
-      text-shadow: 1px 1px 3px black;
-    }
-    .button {
-      background: #25D366;
-      color: white;
-      padding: 15px 25px;
-      margin: 15px;
-      border: none;
-      border-radius: 12px;
-      font-size: 1.3em;
-      cursor: pointer;
-      transition: all 0.3s;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    }
-    .button:disabled {
-      background: gray;
-      cursor: not-allowed;
-      opacity: 0.5;
-    }
-    .players {
-      font-size: 1.2em;
-      margin-top: 20px;
-      color: #FFD700;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FortunaPlay</title>
+<meta name="description" content="🎰 FortunaPlay - Tu nueva experiencia de juego online. Unite y participá con nosotros por premios increíbles.">
+
+<!-- Etiquetas Open Graph -->
+<meta property="og:title" content="FortunaPlay 🎰">
+<meta property="og:description" content="Tu nueva experiencia de juego online. Unite y participá por premios increíbles.">
+<meta property="og:image" content="https://iili.io/KJmu0S2.jpg">
+<meta property="og:url" content="https://tusitio.com/">
+<meta property="og:type" content="website">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="https://iili.io/KJpXWH7.jpg">
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-502569916"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-502569916');
+</script>
+
+<style>
+:root {
+  --verde: #25D366;
+  --verde-oscuro: #128C7E;
+  --gris: #555555;
+  --violeta: #7d2ae8;
+  --dorado: #FFD700;
+}
+
+*{box-sizing:border-box;}
+body {
+  margin:0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://iili.io/KJmu0S2.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+}
+
+.overlay {
+  min-height: 100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:center;
+  padding:2rem 1rem;
+}
+
+h1 {
+  font-size: clamp(3rem,8vw,6rem);
+  background: linear-gradient(135deg, var(--dorado), var(--violeta));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 15px var(--violeta), 0 0 25px var(--dorado);
+  margin:0;
+  padding-top:0.5rem;
+}
+
+#promo {
+  font-size: clamp(1rem,2vw,1.5rem);
+  margin:1.5rem 0 4rem 0;
+  line-height:1.4;
+  max-width:90%;
+}
+
+.button-group{
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+  align-items:center;
+  width:100%;
+}
+
+#btn-usuario-wrapper {
+  margin-top:auto;
+  margin-bottom:1rem;
+}
+
+#contador {
+  font-size: clamp(1rem,2vw,1.3rem);
+  font-weight: bold;
+  margin:1rem 0 1rem 0;
+  color: var(--dorado);
+  text-shadow: 0 0 10px var(--violeta);
+}
+
+.text-legal {
+  font-size: clamp(0.7rem,1.5vw,0.85rem);
+  color: #ccc;
+  max-width: 90%;
+  margin-top:1rem;
+  line-height:1.3;
+}
+
+.btn {
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+  padding:0.8rem 1.8rem;
+  border:none;
+  border-radius:50px;
+  font-size:clamp(0.9rem,2vw,1.2rem);
+  font-weight:bold;
+  color:#fff;
+  cursor:pointer;
+  text-decoration:none;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s;
+  text-align:center;
+  max-width:300px;
+  justify-content:center;
+}
+
+.btn-green { 
+  background: linear-gradient(135deg, var(--verde-oscuro), var(--verde)); 
+  box-shadow: 0 0 10px var(--verde), 0 0 20px var(--verde), 0 0 30px var(--verde);
+  animation: glow 2s infinite alternate;
+}
+
+.btn-gray { 
+  background: linear-gradient(135deg, #666, var(--gris)); 
+  padding:0.6rem 1.5rem; 
+  box-shadow: 0 0 8px #888, 0 0 16px #555;
+}
+
+.btn:hover { 
+  transform: scale(1.05); 
+  box-shadow:0 0 20px var(--verde),0 0 40px var(--verde),0 0 60px var(--verde);
+}
+
+.btn img{ width:24px; height:24px; }
+
+.btn:disabled {
+  opacity:0.5;
+  cursor: not-allowed;
+}
+
+@keyframes glow {
+  0%,100% { box-shadow: 0 0 10px var(--verde), 0 0 20px var(--verde), 0 0 30px var(--verde); }
+  50% { box-shadow: 0 0 20px var(--verde), 0 0 40px var(--verde), 0 0 60px var(--verde); }
+}
+
+@media (max-width:600px){
+  .overlay{padding:1rem;}
+  h1{font-size: clamp(2.5rem,10vw,4rem);}
+  #promo{margin:1.2rem 0 3rem 0;}
+  .btn{width:80%;}
+}
+</style>
 </head>
 <body>
-  <div class="overlay"></div>
-  <h1>🎰 FortunaPlay</h1>
-  <p>¡Te creamos el usuario al instante!<br>¿Te lo vas a perder? 🎲💎</p>
 
-  <!-- Botón: QUIERO MI USUARIO -->
-  <button class="button" id="btnUsuario">📲 Quiero mi usuario</button>
+<div class="overlay">
+  <h1>FortunaPlay</h1>
+  <div id="promo">
+    Te creamos el usuario al instante!<br>
+    ¡Te lo vas a perder? 🎲💎
+  </div>
 
-  <p class="players">Actualmente hay <span id="jugadores"></span> jugadores conectados 🎲</p>
+  <div id="btn-usuario-wrapper" class="button-group">
+    <button class="btn btn-green" id="btn-usuario">
+      <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
+      Quiero mi usuario
+    </button>
+  </div>
 
-  <!-- Botón: DUDAS -->
-  <button class="button" onclick="window.location.href='https://wa.me/541125127839?text=Hola%20Facu,%20vengo%20de%20tu%20página%20web.%20¿Me%20darías%20más%20información?'">💬 DUDAS? Escríbenos</button>
+  <div id="contador">Actualmente hay 0 jugadores conectados 🎲</div>
 
-  <p>Los premios son otorgados bajo términos y condiciones. +18</p>
+  <div class="button-group">
+    <button class="btn btn-gray" id="btn-dudas">
+      <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
+      DUDAS? Escribinos
+    </button>
+  </div>
 
-  <script>
-    // 🎲 SIMULADOR DE JUGADORES CONECTADOS
-    function actualizarJugadores() {
-      const jugadores = Math.floor(Math.random() * (290 - 235 + 1)) + 235;
-      document.getElementById('jugadores').textContent = jugadores;
-    }
-    setInterval(actualizarJugadores, 5000);
-    actualizarJugadores();
+  <div class="text-legal">
+    Los premios son otorgados bajo términos y condiciones. +18
+  </div>
+</div>
 
-    // 📲 ROTACIÓN DE NÚMEROS
-    const numeros = [
-      { num: '541132525913', nombre: 'Lauty' },
-      { num: '541171334027', nombre: 'Lucas' },
-      { num: '541156349123', nombre: 'Cami' },
-      { num: '541173566830', nombre: 'Octavio' },
-      { num: '541125127839', nombre: 'Facu' },
-      { num: '541123365501', nombre: 'Joaki' },
-      { num: '542615027973', nombre: 'Ale' }
-    ];
-    let ultimoIndex = -1;
+<script>
+const WHATS_LINES = [
+  { num: '541132525913', nombre: 'Lauty' },
+  { num: '541171334027', nombre: 'Lucas' },
+  { num: '541156349123', nombre: 'Cami' },
+  { num: '541173566830', nombre: 'Octavio' },
+  { num: '541125127839', nombre: 'Facu' },
+  { num: '541123365501', nombre: 'Joaki' },
+  { num: '542615027973', nombre: 'Ale' }
+];
 
-    function obtenerNumeroAleatorio() {
-      let index;
-      do {
-        index = Math.floor(Math.random() * numeros.length);
-      } while (index === ultimoIndex);
-      ultimoIndex = index;
-      return numeros[index];
-    }
+let ultimoIndex = -1;
+function nextIndex(){
+  let index;
+  do {
+    index = Math.floor(Math.random() * WHATS_LINES.length);
+  } while(index === ultimoIndex);
+  ultimoIndex = index;
+  return index;
+}
 
-    // ⏳ BOTÓN DE USUARIO CON BLOQUEO 3 MINUTOS Y EFECTO OPACIDAD
-    const btnUsuario = document.getElementById('btnUsuario');
+// SIMULADOR DE JUGADORES
+function actualizarContador(){
+  const base = 235;
+  const variacion = Math.floor(Math.random() * 56); // 235 a 290
+  const total = base + variacion;
+  document.getElementById("contador").innerText = `Actualmente hay ${total} jugadores conectados 🎲`;
+}
+actualizarContador();
+setInterval(actualizarContador, 5000);
 
-    btnUsuario.addEventListener('click', () => {
-      const ahora = Date.now();
-      const ultimoClick = localStorage.getItem('ultimoClick');
+// BOTONES
+const btnUsuario = document.getElementById('btn-usuario');
+const btnDudas = document.getElementById('btn-dudas');
 
-      if (ultimoClick && ahora - ultimoClick < 3 * 60 * 1000) {
-        alert("Ya te contactaste, revisa tu WhatsApp. | Mucha suerte 🍀📲😊");
-        return;
-      }
+btnUsuario.addEventListener('click', () => {
+  const ahora = Date.now();
+  const ultimoClick = localStorage.getItem('ultimoClick');
 
-      const contacto = obtenerNumeroAleatorio();
-      const mensaje = `Hola ${contacto.nombre}, me creas un usuario por favor? Vengo de tu página web!`;
-      window.location.href = `https://wa.me/${contacto.num}?text=${encodeURIComponent(mensaje)}`;
+  if(ultimoClick && ahora - ultimoClick < 3*60*1000){
+    alert("Ya te contactaste, revisa tu WhatsApp. | Mucha suerte 🍀📲😊");
+    return;
+  }
 
-      localStorage.setItem('ultimoClick', ahora);
+  const idx = nextIndex();
+  const line = WHATS_LINES[idx];
+  const mensaje = `Hola ${line.nombre}, me creas un usuario por favor? Vengo de tu página web!`;
+  const url = `https://wa.me/${line.num}?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, '_blank','noopener');
 
-      btnUsuario.disabled = true;
-      btnUsuario.style.opacity = 0.5;
-      btnUsuario.textContent = "⏳ Ya te contactaste, revisa tu WhatsApp. | Mucha suerte 🍀📲😊";
+  localStorage.setItem('ultimoClick', ahora);
 
-      setTimeout(() => {
-        btnUsuario.disabled = false;
-        btnUsuario.style.opacity = 1;
-        btnUsuario.textContent = "📲 Quiero mi usuario";
-      }, 3 * 60 * 1000);
-    });
-  </script>
+  btnUsuario.disabled = true;
+  btnUsuario.textContent = "⏳ Ya te contactaste, revisa tu WhatsApp. | Mucha suerte 🍀📲😊";
+
+  setTimeout(()=>{
+    btnUsuario.disabled = false;
+    btnUsuario.textContent = "📲 Quiero mi usuario";
+  },3*60*1000);
+});
+
+// Botón dudas siempre activo
+btnDudas.addEventListener('click', ()=>{
+  const idx = nextIndex();
+  const line = WHATS_LINES[idx];
+  const mensaje = `Hola ${line.nombre}, vengo de tu página web. ¿Me darías más información?`;
+  const url = `https://wa.me/${line.num}?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, '_blank','noopener');
+});
+</script>
+
 </body>
 </html>
