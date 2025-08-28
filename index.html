@@ -215,11 +215,11 @@ function siguienteContacto() {
 
 // --------- BLOQUEAR BOTÓN ----------
 const BTN = document.getElementById('btn-usuario');
-const BLOQUEO_KEY = "btnBloqueadoHasta";
+const BLOQUEO_KEY = "btnBloquek
 
 function bloquearBoton() {
   BTN.disabled = true;
-  BTN.innerText = 'Ya te contactaste revisa tu WhatsApp! Mucha Suerte 📲😊💰';
+  BTN.innerText = 'Ya te contactaste revisa tu WhatsApp!, Mucha Suerte 📲😊💰';
 }
 
 function restaurarBoton() {
@@ -275,7 +275,7 @@ function actualizarContador(){
   const base = 230;
   const variacion = Math.floor(Math.random()*40);
   const total = base + variacion;
-  document.getElementById("contador").innerText = `Actualmente hay ${total} jugadores conectados 🎲`;
+  document.getElementById("contador").innerText = `Actualmente hay ${total} jugadores conectados 🎰🎲`;
 }
 actualizarContador();
 setInterval(actualizarContador, 5000);
