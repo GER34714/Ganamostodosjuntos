@@ -3,11 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fortuna Play</title>
-<meta name="description" content="🎰 Fortuna Play - Tu nueva experiencia de juego online. Unite y participá con nosotros por premios increíbles.">
+<title>FortunaPlay</title>
+<meta name="description" content="🎰 FortunaPlay - Tu nueva experiencia de juego online. Unite y participá con nosotros por premios increíbles.">
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-502569916"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-502569916');
+</script>
 
 <!-- Etiquetas Open Graph -->
-<meta property="og:title" content="Fortuna Play 🎰">
+<meta property="og:title" content="FortunaPlay 🎰">
 <meta property="og:description" content="Tu nueva experiencia de juego online. Unite y participá por premios increíbles.">
 <meta property="og:image" content="https://iili.io/KJmu0S2.jpg">
 <meta property="og:url" content="https://tusitio.com/">
@@ -16,14 +25,12 @@
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="https://iili.io/KJpXWH7.jpg">
 
-<!-- GA4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-502569916"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-502569916');
-</script>
+<!-- Canonical -->
+<link rel="canonical" href="https://tusitio.com/">
+
+<!-- Preload imágenes importantes -->
+<link rel="preload" as="image" href="https://iili.io/KJmu0S2.jpg">
+<link rel="preload" as="image" href="https://iili.io/KJpXWH7.jpg">
 
 <style>
 :root {
@@ -81,18 +88,14 @@ h1 {
 #btn-usuario-wrapper {
   margin-top:auto;
   margin-bottom:1rem;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
 }
 
-#mensaje-contacto {
-  margin-top:1rem;
-  font-size: clamp(0.9rem,2vw,1rem);
-  color: #FFD700;
-  text-shadow: 0 0 5px var(--violeta);
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+#mensaje-bloqueo {
+  margin-top:0.8rem;
+  font-size:1rem;
+  color:#FFD700;
+  text-shadow:0 0 5px #7d2ae8;
+  text-align:center;
 }
 
 #contador {
@@ -101,6 +104,7 @@ h1 {
   margin:1rem 0 1rem 0;
   color: var(--dorado);
   text-shadow: 0 0 10px var(--violeta);
+  transition: transform 0.3s ease;
 }
 
 .text-legal {
@@ -123,7 +127,7 @@ h1 {
   color:#fff;
   cursor:pointer;
   text-decoration:none;
-  transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s;
+  transition: transform 0.2s, box-shadow 0.2s;
   text-align:center;
   max-width:300px;
   justify-content:center;
@@ -148,11 +152,6 @@ h1 {
 
 .btn img{ width:24px; height:24px; }
 
-.btn:disabled {
-  opacity:0.5;
-  cursor: not-allowed;
-}
-
 @keyframes glow {
   0%,100% { box-shadow: 0 0 10px var(--verde), 0 0 20px var(--verde), 0 0 30px var(--verde); }
   50% { box-shadow: 0 0 20px var(--verde), 0 0 40px var(--verde), 0 0 60px var(--verde); }
@@ -176,17 +175,17 @@ h1 {
   </div>
 
   <div id="btn-usuario-wrapper" class="button-group">
-    <button class="btn btn-green" id="btn-usuario">
+    <button class="btn btn-green" id="btn-usuario" aria-label="Crear usuario en WhatsApp">
       <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
       Quiero mi usuario
     </button>
-    <div id="mensaje-contacto"></div>
+    <div id="mensaje-bloqueo"></div>
   </div>
 
   <div id="contador">Actualmente hay 0 jugadores conectados 🎲</div>
 
   <div class="button-group">
-    <button class="btn btn-gray" id="btn-dudas">
+    <button class="btn btn-gray" id="btn-dudas" aria-label="Dudas por WhatsApp">
       <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
       DUDAS? Escribinos
     </button>
@@ -199,77 +198,131 @@ h1 {
 
 <script>
 const WHATS_LINES = [
-  { num: '541132525913', nombre: 'Lauty' },
-  { num: '541171334027', nombre: 'Lucas' },
-  { num: '541156349123', nombre: 'Cami' },
-  { num: '541173566830', nombre: 'Octavio' },
-  { num: '541125127839', nombre: 'Facu' },
-  { num: '541123365501', nombre: 'Joaki' },
-  { num: '542615027973', nombre: 'Ale' }
+  { num: '5491171334027' },
+  { num: '5491156349123' },
+  { num: '5491173566830' },
+  { num: '5491123365501' },
+  { num: '5491125127839' },
+  { num: '5491132525913' }
 ];
 
-let ultimoIndex = -1;
-function nextIndex(){
-  let index;
-  do {
-    index = Math.floor(Math.random() * WHATS_LINES.length);
-  } while(index === ultimoIndex);
-  ultimoIndex = index;
-  return index;
+const BLOQUEO_MS = 180000; // 3 minutos
+
+let shuffled = [];
+let currentIndex = 0;
+let lastNumber = null;
+let blockedUntil = null;
+let blockedMessage = null;
+
+// Cargar estado si existe
+if(localStorage.getItem('shuffledList')){
+  shuffled = JSON.parse(localStorage.getItem('shuffledList'));
+  currentIndex = parseInt(localStorage.getItem('currentIndex'),10) || 0;
+  lastNumber = localStorage.getItem('lastNumber') || null;
+  blockedUntil = parseInt(localStorage.getItem('blockedUntil'),10) || null;
+  blockedMessage = localStorage.getItem('blockedMessage') || null;
 }
 
-// SIMULADOR DE JUGADORES SUAVE
-let totalUsuarios = 260; // valor inicial
-function actualizarContadorSuave(){
-  const variacion = Math.floor(Math.random() * 5) - 2; // -2 a +2
-  totalUsuarios += variacion;
-  if(totalUsuarios < 235) totalUsuarios = 235;
-  if(totalUsuarios > 290) totalUsuarios = 290;
-  document.getElementById("contador").innerText = `Actualmente hay ${totalUsuarios} jugadores conectados 🎲`;
-}
-setInterval(actualizarContadorSuave, 1000);
-
-// BOTONES
-const btnUsuario = document.getElementById('btn-usuario');
-const btnDudas = document.getElementById('btn-dudas');
-const mensajeContacto = document.getElementById('mensaje-contacto');
-
-btnUsuario.addEventListener('click', () => {
-  const ahora = Date.now();
-  const ultimoClick = localStorage.getItem('ultimoClick');
-
-  if(ultimoClick && ahora - ultimoClick < 3*60*1000){
-    return; // botón bloqueado
+// Mezclar array
+function shuffleArray(arr){
+  const copy = [...arr];
+  for(let i=copy.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [copy[i],copy[j]]=[copy[j],copy[i]];
   }
+  return copy;
+}
 
-  const idx = nextIndex();
-  const line = WHATS_LINES[idx];
-  const mensaje = `Hola ${line.nombre}, me creas un usuario por favor? Vengo de tu página web!`;
-  const url = `https://wa.me/${line.num}?text=${encodeURIComponent(mensaje)}`;
-  window.open(url, '_blank','noopener');
+// Nueva lista asegurando que no arranque con el último número
+function newShuffledList(){
+  let newList;
+  do{
+    newList = shuffleArray(WHATS_LINES);
+  } while(newList[0].num===lastNumber && WHATS_LINES.length>1);
+  return newList;
+}
 
-  localStorage.setItem('ultimoClick', ahora);
+// Guardar estado
+function saveState(){
+  localStorage.setItem('shuffledList',JSON.stringify(shuffled));
+  localStorage.setItem('currentIndex',currentIndex);
+  localStorage.setItem('lastNumber',lastNumber);
+  localStorage.setItem('blockedUntil',blockedUntil);
+  localStorage.setItem('blockedMessage',blockedMessage);
+}
 
-  // Bloqueo y mensaje con fade-in
-  btnUsuario.disabled = true;
-  mensajeContacto.innerText = "Ya te contactaste, revisa tu WhatsApp. | Mucha suerte 🍀📲😊";
-  mensajeContacto.style.opacity = '1';
+// Obtener siguiente línea
+function getNextLine(){
+  const now = Date.now();
+  if(blockedUntil && now < blockedUntil){
+    return { num: lastNumber, message: blockedMessage };
+  }
+  if(currentIndex >= shuffled.length){
+    shuffled = newShuffledList();
+    currentIndex = 0;
+  }
+  const line = shuffled[currentIndex++];
+  lastNumber = line.num;
+  blockedMessage = "YA TE CONTACTASTE, REVISA TU WHATSAPP 😎🎲💎✨";
+  blockedUntil = now + BLOQUEO_MS;
+  saveState();
+  return { num: line.num, message: blockedMessage };
+}
+
+// Mostrar estado de bloqueo al cargar
+function mostrarBloqueo(){
+  const now = Date.now();
+  const mensajeDiv = document.getElementById("mensaje-bloqueo");
+  if(blockedUntil && now < blockedUntil){
+    mensajeDiv.innerText = blockedMessage;
+    document.getElementById("btn-usuario").disabled = true;
+    setTimeout(()=>{ 
+      mensajeDiv.innerText = "";
+      document.getElementById("btn-usuario").disabled = false;
+    }, blockedUntil - now);
+  }
+}
+
+function openWhatsApp(){
+  const { num, message } = getNextLine();
+  const url = `https://wa.me/${num}?text=${encodeURIComponent(message)}`;
+  window.open(url,"_blank","noopener");
+
+  const mensajeDiv = document.getElementById("mensaje-bloqueo");
+  mensajeDiv.innerText = message;
+  document.getElementById("btn-usuario").disabled = true;
 
   setTimeout(()=>{
-    btnUsuario.disabled = false;
-    mensajeContacto.style.opacity = '0';
-    setTimeout(()=>{ mensajeContacto.innerText = ''; },500); // limpiar texto después de fade-out
-  },3*60*1000);
+    mensajeDiv.innerText = "";
+    document.getElementById("btn-usuario").disabled = false;
+  }, BLOQUEO_MS);
+
+  if(typeof gtag==="function"){
+    gtag('event','click_whatsapp',{ whatsapp_number: num });
+  }
+}
+
+document.getElementById('btn-usuario').addEventListener('click',openWhatsApp);
+document.getElementById('btn-dudas').addEventListener('click',()=>{
+  const line = WHATS_LINES[Math.floor(Math.random()*WHATS_LINES.length)];
+  const msg = "hola me das más información? 😎🎲💎✨";
+  window.open(`https://wa.me/${line.num}?text=${encodeURIComponent(msg)}`,"_blank","noopener");
 });
 
-// Botón dudas siempre activo
-btnDudas.addEventListener('click', ()=>{
-  const idx = nextIndex();
-  const line = WHATS_LINES[idx];
-  const mensaje = `Hola ${line.nombre}, vengo de tu página web. ¿Me darías más información?`;
-  const url = `https://wa.me/${line.num}?text=${encodeURIComponent(mensaje)}`;
-  window.open(url, '_blank','noopener');
-});
+// Contador con efecto de movimiento
+function actualizarContador(){
+  const base = 230;
+  const variacion = Math.floor(Math.random()*40);
+  const total = base + variacion;
+  const contador = document.getElementById("contador");
+  contador.innerText=`Actualmente hay ${total} jugadores conectados 🎲`;
+  contador.style.transform = "translateY(-5px)";
+  setTimeout(()=>{ contador.style.transform = "translateY(0)"; }, 250);
+}
+
+actualizarContador();
+setInterval(actualizarContador,5000);
+mostrarBloqueo();
 </script>
 
 </body>
