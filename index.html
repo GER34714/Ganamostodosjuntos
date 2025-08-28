@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> Fortuna Play </title>
-<meta name="description" content="🎰 Fortuna Play - Tu nueva experiencia de juego online. Unite y participá con nosotros por premios increíbles.">
+<title>FortunaPlay</title>
+<meta name="description" content="🎰 FortunaPlay - Tu nueva experiencia de juego online. Unite y participá con nosotros por premios increíbles.">
 
 <!-- Etiquetas Open Graph -->
-<meta property="og:title" content="Fortuna Play 🎰">
+<meta property="og:title" content="FortunaPlay 🎰">
 <meta property="og:description" content="Tu nueva experiencia de juego online. Unite y participá por premios increíbles.">
 <meta property="og:image" content="https://iili.io/KJmu0S2.jpg">
 <meta property="og:url" content="https://tusitio.com/">
@@ -215,11 +215,11 @@ function siguienteContacto() {
 
 // --------- BLOQUEAR BOTÓN ----------
 const BTN = document.getElementById('btn-usuario');
-const BLOQUEO_KEY = "btnBloquek
+const BLOQUEO_KEY = "btnBloqueadoHasta";
 
 function bloquearBoton() {
   BTN.disabled = true;
-  BTN.innerText = 'Ya te contactaste revisa tu WhatsApp!, Mucha Suerte 📲😊💰';
+  BTN.innerText = 'Ya te contactaste revisa tu WhatsApp! Mucha suerte 🎉';
 }
 
 function restaurarBoton() {
@@ -275,7 +275,7 @@ function actualizarContador(){
   const base = 230;
   const variacion = Math.floor(Math.random()*40);
   const total = base + variacion;
-  document.getElementById("contador").innerText = `Actualmente hay ${total} jugadores conectados 🎰🎲`;
+  document.getElementById("contador").innerText = `Actualmente hay ${total} jugadores conectados 🎲`;
 }
 actualizarContador();
 setInterval(actualizarContador, 5000);
