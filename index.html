@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FortunaPlay</title>
+<title>Fortuna Play™</title>
 <meta name="description" content="🎰 FortunaPlay - Tu nueva experiencia de juego online. Unite y participá con nosotros por premios increíbles.">
 
 <!-- Etiquetas Open Graph -->
-<meta property="og:title" content="FortunaPlay 🎰">
-<meta property="og:description" content="Tu nueva experiencia de juego online. Unite y participá por premios increíbles.">
+<meta property="og:title" content="Fortuna Play™">
+<meta property="og:description" content="Tu nueva experiencia de juego online. Unite y participá con premios increíbles.">
 <meta property="og:image" content="https://iili.io/KJmu0S2.jpg">
 <meta property="og:url" content="https://tusitio.com/">
 <meta property="og:type" content="website">
@@ -152,7 +152,7 @@ h1 {
 <body>
 
 <div class="overlay">
-  <h1>FortunaPlay</h1>
+  <h1>Fortuna Play™</h1>
   <div id="promo">
     Te creamos el usuario al instante!<br>
     ¡Te lo vas a perder? 🎲💎
@@ -190,7 +190,7 @@ const CONTACTOS = [
   { nombre: 'Ale', num: '5492615027973' }
 ];
 
-// --------- ROTACIÓN ALEATORIA ----------
+// Rotación aleatoria
 let ronda = [];
 let ultimo = null;
 
@@ -213,7 +213,7 @@ function siguienteContacto() {
   return contacto;
 }
 
-// --------- BLOQUEAR BOTÓN ----------
+// Bloqueo botón usuario
 const BTN = document.getElementById('btn-usuario');
 const BLOQUEO_KEY = "btnBloqueadoHasta";
 
@@ -236,7 +236,7 @@ function verificarBloqueo() {
   }
 }
 
-// --------- ABRIR WHATSAPP ----------
+// Abrir WhatsApp
 function openWhatsApp(type) {
   const contacto = siguienteContacto();
   let msg = '';
@@ -251,13 +251,11 @@ function openWhatsApp(type) {
   const w = window.open(url, '_blank', 'noopener,noreferrer');
   if (!w) location.href = url;
 
-  // GA4: evento
   gtag('event', type === 'usuario' ? 'click_usuario' : 'click_dudas', {
     'whatsapp_number': contacto.num,
     'whatsapp_name': contacto.nombre
   });
 
-  // BLOQUEO SOLO SI ES USUARIO
   if (type === 'usuario') {
     bloquearBoton();
     const desbloqueo = Date.now() + 180000; // 3 minutos
@@ -266,11 +264,10 @@ function openWhatsApp(type) {
   }
 }
 
-// --------- EVENTOS ----------
 BTN.addEventListener('click', () => openWhatsApp('usuario'));
 document.getElementById('btn-dudas').addEventListener('click', () => openWhatsApp('dudas'));
 
-// --------- CONTADOR ----------
+// Contador aleatorio
 function actualizarContador(){
   const base = 230;
   const variacion = Math.floor(Math.random()*40);
@@ -280,7 +277,7 @@ function actualizarContador(){
 actualizarContador();
 setInterval(actualizarContador, 5000);
 
-// --------- AL CARGAR ----------
+// Verificar bloqueo al cargar
 verificarBloqueo();
 </script>
 
