@@ -15,7 +15,7 @@
   gtag('config', 'G-502569916');
 </script>
 
-<!-- Etiquetas Open Graph -->
+<!-- Open Graph -->
 <meta property="og:title" content="FortunaPlay 🎰">
 <meta property="og:description" content="Tu nueva experiencia de juego online. Unite y participá por premios increíbles.">
 <meta property="og:image" content="https://iili.io/KJmu0S2.jpg">
@@ -24,13 +24,6 @@
 
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="https://iili.io/KJpXWH7.jpg">
-
-<!-- Canonical -->
-<link rel="canonical" href="https://tusitio.com/">
-
-<!-- Preload imágenes importantes -->
-<link rel="preload" as="image" href="https://iili.io/KJmu0S2.jpg">
-<link rel="preload" as="image" href="https://iili.io/KJpXWH7.jpg">
 
 <style>
 :root {
@@ -44,15 +37,15 @@
 *{box-sizing:border-box;}
 body {
   margin:0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://iili.io/KJmu0S2.jpg') no-repeat center center fixed;
   background-size: cover;
-  color: #fff;
-  text-align: center;
+  color:#fff;
+  text-align:center;
 }
 
 .overlay {
-  min-height: 100vh;
+  min-height:100vh;
   display:flex;
   flex-direction:column;
   justify-content:flex-start;
@@ -61,17 +54,17 @@ body {
 }
 
 h1 {
-  font-size: clamp(3rem,8vw,6rem);
-  background: linear-gradient(135deg, var(--dorado), var(--violeta));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 15px var(--violeta), 0 0 25px var(--dorado);
+  font-size:clamp(3rem,8vw,6rem);
+  background: linear-gradient(135deg,var(--dorado),var(--violeta));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 15px var(--violeta),0 0 25px var(--dorado);
   margin:0;
   padding-top:0.5rem;
 }
 
 #promo {
-  font-size: clamp(1rem,2vw,1.5rem);
+  font-size:clamp(1rem,2vw,1.5rem);
   margin:1.5rem 0 4rem 0;
   line-height:1.4;
   max-width:90%;
@@ -99,18 +92,18 @@ h1 {
 }
 
 #contador {
-  font-size: clamp(1rem,2vw,1.3rem);
-  font-weight: bold;
+  font-size:clamp(1rem,2vw,1.3rem);
+  font-weight:bold;
   margin:1rem 0 1rem 0;
-  color: var(--dorado);
-  text-shadow: 0 0 10px var(--violeta);
-  transition: transform 0.3s ease;
+  color:var(--dorado);
+  text-shadow:0 0 10px var(--violeta);
+  transition: all 0.5s ease;
 }
 
 .text-legal {
-  font-size: clamp(0.7rem,1.5vw,0.85rem);
-  color: #ccc;
-  max-width: 90%;
+  font-size:clamp(0.7rem,1.5vw,0.85rem);
+  color:#ccc;
+  max-width:90%;
   margin-top:1rem;
   line-height:1.3;
 }
@@ -134,32 +127,32 @@ h1 {
 }
 
 .btn-green { 
-  background: linear-gradient(135deg, var(--verde-oscuro), var(--verde)); 
-  box-shadow: 0 0 10px var(--verde), 0 0 20px var(--verde), 0 0 30px var(--verde);
+  background: linear-gradient(135deg,var(--verde-oscuro),var(--verde)); 
+  box-shadow:0 0 10px var(--verde),0 0 20px var(--verde),0 0 30px var(--verde);
   animation: glow 2s infinite alternate;
 }
 
 .btn-gray { 
-  background: linear-gradient(135deg, #666, var(--gris)); 
+  background: linear-gradient(135deg,#666,var(--gris)); 
   padding:0.6rem 1.5rem; 
-  box-shadow: 0 0 8px #888, 0 0 16px #555;
+  box-shadow:0 0 8px #888,0 0 16px #555;
 }
 
 .btn:hover { 
-  transform: scale(1.05); 
+  transform:scale(1.05); 
   box-shadow:0 0 20px var(--verde),0 0 40px var(--verde),0 0 60px var(--verde);
 }
 
 .btn img{ width:24px; height:24px; }
 
 @keyframes glow {
-  0%,100% { box-shadow: 0 0 10px var(--verde), 0 0 20px var(--verde), 0 0 30px var(--verde); }
-  50% { box-shadow: 0 0 20px var(--verde), 0 0 40px var(--verde), 0 0 60px var(--verde); }
+  0%,100%{ box-shadow:0 0 10px var(--verde),0 0 20px var(--verde),0 0 30px var(--verde);}
+  50%{ box-shadow:0 0 20px var(--verde),0 0 40px var(--verde),0 0 60px var(--verde);}
 }
 
 @media (max-width:600px){
   .overlay{padding:1rem;}
-  h1{font-size: clamp(2.5rem,10vw,4rem);}
+  h1{font-size:clamp(2.5rem,10vw,4rem);}
   #promo{margin:1.2rem 0 3rem 0;}
   .btn{width:80%;}
 }
@@ -198,34 +191,34 @@ h1 {
 
 <script>
 const WHATS_LINES = [
-  { num: '5491171334027' },
-  { num: '5491156349123' },
-  { num: '5491173566830' },
-  { num: '5491123365501' },
-  { num: '5491125127839' },
-  { num: '5491132525913' }
+  {name:"Martin", num:"5491132525913"},
+  {name:"Lucas", num:"5491171334027"},
+  {name:"Cami", num:"5491156349123"},
+  {name:"Octavio", num:"5491173566830"},
+  {name:"Joaki", num:"5491123365501"},
+  {name:"Facu", num:"5491125127839"},
+  {name:"Ale", num:"+5492615027973"}
 ];
 
 const BLOQUEO_MS = 180000; // 3 minutos
-
 let shuffled = [];
 let currentIndex = 0;
 let lastNumber = null;
 let blockedUntil = null;
 let blockedMessage = null;
 
-// Cargar estado si existe
+// Cargar estado
 if(localStorage.getItem('shuffledList')){
   shuffled = JSON.parse(localStorage.getItem('shuffledList'));
-  currentIndex = parseInt(localStorage.getItem('currentIndex'),10) || 0;
-  lastNumber = localStorage.getItem('lastNumber') || null;
-  blockedUntil = parseInt(localStorage.getItem('blockedUntil'),10) || null;
-  blockedMessage = localStorage.getItem('blockedMessage') || null;
+  currentIndex = parseInt(localStorage.getItem('currentIndex'),10)||0;
+  lastNumber = localStorage.getItem('lastNumber')||null;
+  blockedUntil = parseInt(localStorage.getItem('blockedUntil'),10)||null;
+  blockedMessage = localStorage.getItem('blockedMessage')||null;
 }
 
 // Mezclar array
 function shuffleArray(arr){
-  const copy = [...arr];
+  const copy=[...arr];
   for(let i=copy.length-1;i>0;i--){
     const j=Math.floor(Math.random()*(i+1));
     [copy[i],copy[j]]=[copy[j],copy[i]];
@@ -233,12 +226,12 @@ function shuffleArray(arr){
   return copy;
 }
 
-// Nueva lista asegurando que no arranque con el último número
+// Nueva lista evitando repetir último número
 function newShuffledList(){
   let newList;
   do{
     newList = shuffleArray(WHATS_LINES);
-  } while(newList[0].num===lastNumber && WHATS_LINES.length>1);
+  }while(newList[0].num===lastNumber && WHATS_LINES.length>1);
   return newList;
 }
 
@@ -251,77 +244,74 @@ function saveState(){
   localStorage.setItem('blockedMessage',blockedMessage);
 }
 
-// Obtener siguiente línea
+// Obtener siguiente número
 function getNextLine(){
-  const now = Date.now();
-  if(blockedUntil && now < blockedUntil){
-    return { num: lastNumber, message: blockedMessage };
+  const now=Date.now();
+  if(blockedUntil && now<blockedUntil){
+    return { num:lastNumber, message:blockedMessage };
   }
-  if(currentIndex >= shuffled.length){
-    shuffled = newShuffledList();
-    currentIndex = 0;
+  if(currentIndex>=shuffled.length){
+    shuffled=newShuffledList();
+    currentIndex=0;
   }
-  const line = shuffled[currentIndex++];
-  lastNumber = line.num;
-  blockedMessage = "YA TE CONTACTASTE, REVISA TU WHATSAPP 😎🎲💎✨";
-  blockedUntil = now + BLOQUEO_MS;
+  const line=shuffled[currentIndex++];
+  lastNumber=line.num;
+  blockedMessage="YA TE CONTACTASTE...\nrevisá tu WhatsApp.\nMucha suerte 🍀📲😊";
+  blockedUntil=now+BLOQUEO_MS;
   saveState();
-  return { num: line.num, message: blockedMessage };
+  return { num:line.num, message:blockedMessage, name:line.name };
 }
 
-// Mostrar estado de bloqueo al cargar
+// Mostrar bloqueo al cargar
 function mostrarBloqueo(){
-  const now = Date.now();
-  const mensajeDiv = document.getElementById("mensaje-bloqueo");
-  if(blockedUntil && now < blockedUntil){
-    mensajeDiv.innerText = blockedMessage;
-    document.getElementById("btn-usuario").disabled = true;
-    setTimeout(()=>{ 
-      mensajeDiv.innerText = "";
-      document.getElementById("btn-usuario").disabled = false;
-    }, blockedUntil - now);
+  const now=Date.now();
+  const mensajeDiv=document.getElementById("mensaje-bloqueo");
+  const btn=document.getElementById("btn-usuario");
+  if(blockedUntil && now<blockedUntil){
+    mensajeDiv.innerText=blockedMessage;
+    btn.disabled=true;
+    setTimeout(()=>{
+      mensajeDiv.innerText="";
+      btn.disabled=false;
+    },blockedUntil-now);
   }
 }
 
+// Abrir WhatsApp
 function openWhatsApp(){
-  const { num, message } = getNextLine();
-  const url = `https://wa.me/${num}?text=${encodeURIComponent(message)}`;
-  window.open(url,"_blank","noopener");
+  const { num, message, name }=getNextLine();
+  const waMsg=`Hola ${name} 😊,\nvengo de tu sitio web, ¿me creas un usuario por favor?`;
+  window.open(`https://wa.me/${num}?text=${encodeURIComponent(waMsg)}`,"_blank","noopener");
 
-  const mensajeDiv = document.getElementById("mensaje-bloqueo");
-  mensajeDiv.innerText = message;
-  document.getElementById("btn-usuario").disabled = true;
+  const mensajeDiv=document.getElementById("mensaje-bloqueo");
+  const btn=document.getElementById("btn-usuario");
+  mensajeDiv.innerText=message;
+  btn.disabled=true;
 
   setTimeout(()=>{
-    mensajeDiv.innerText = "";
-    document.getElementById("btn-usuario").disabled = false;
-  }, BLOQUEO_MS);
-
-  if(typeof gtag==="function"){
-    gtag('event','click_whatsapp',{ whatsapp_number: num });
-  }
+    mensajeDiv.innerText="";
+    btn.disabled=false;
+    blockedUntil=null;
+    saveState();
+  },BLOQUEO_MS);
 }
 
-document.getElementById('btn-usuario').addEventListener('click',openWhatsApp);
-document.getElementById('btn-dudas').addEventListener('click',()=>{
-  const line = WHATS_LINES[Math.floor(Math.random()*WHATS_LINES.length)];
-  const msg = "hola me das más información? 😎🎲💎✨";
-  window.open(`https://wa.me/${line.num}?text=${encodeURIComponent(msg)}`,"_blank","noopener");
+// Eventos
+document.getElementById("btn-usuario").addEventListener("click",openWhatsApp);
+document.getElementById("btn-dudas").addEventListener("click",()=>{
+  window.open("https://wa.me/5491125127839?text="+encodeURIComponent("Hola, me das más información?"),"_blank","noopener");
 });
 
-// Contador con efecto de movimiento
+// Contador suave
+let contadorBase=230;
 function actualizarContador(){
-  const base = 230;
-  const variacion = Math.floor(Math.random()*40);
-  const total = base + variacion;
-  const contador = document.getElementById("contador");
-  contador.innerText=`Actualmente hay ${total} jugadores conectados 🎲`;
-  contador.style.transform = "translateY(-5px)";
-  setTimeout(()=>{ contador.style.transform = "translateY(0)"; }, 250);
+  let variacion=Math.floor(Math.random()*40);
+  let total=contadorBase+variacion;
+  document.getElementById("contador").innerText=`Actualmente hay ${total} jugadores conectados 🎲`;
 }
-
 actualizarContador();
 setInterval(actualizarContador,5000);
+
 mostrarBloqueo();
 </script>
 
