@@ -123,12 +123,6 @@ h1 {
   animation: glow 2s infinite alternate;
 }
 
-.btn-gray { 
-  background: linear-gradient(135deg, #666, var(--gris)); 
-  padding:0.6rem 1.5rem; 
-  box-shadow: 0 0 8px #888, 0 0 16px #555;
-}
-
 .btn:hover { 
   transform: scale(1.05); 
   box-shadow:0 0 20px var(--verde),0 0 40px var(--verde),0 0 60px var(--verde);
@@ -167,13 +161,6 @@ h1 {
 
   <div id="contador">Actualmente hay 0 jugadores conectados 🎲</div>
 
-  <div class="button-group">
-    <button class="btn btn-gray" id="btn-dudas">
-      <img src="https://iili.io/KJpXWH7.jpg" alt="WhatsApp">
-      DUDAS? Escribinos
-    </button>
-  </div>
-
   <div class="text-legal">
     Los premios son otorgados bajo términos y condiciones. +18
   </div>
@@ -181,15 +168,13 @@ h1 {
 
 <script>
 const CONTACTOS = [
-  { nombre: 'Martin', num: '5491132525913' },
   { nombre: 'Lucas', num: '5491171334027' },
-  { nombre: 'Octavio', num: '5491173566830' },
   { nombre: 'Joaki', num: '5491123365501' },
-  { nombre: 'Facu', num: '5491125127839' },
-  { nombre: 'Ale', num: '5492615027973' }
+  { nombre: 'Facu',  num: '5491125127839' },
+  { nombre: 'Cami',  num: '5491156349123' }
 ];
 
-// Selección 100% aleatoria
+// Selección aleatoria
 function siguienteContacto() {
   const randomIndex = Math.floor(Math.random() * CONTACTOS.length);
   return CONTACTOS[randomIndex];
@@ -219,42 +204,32 @@ function verificarBloqueo() {
 }
 
 // Abrir WhatsApp
-function openWhatsApp(type) {
+function openWhatsApp() {
   const contacto = siguienteContacto();
-  let msg = '';
-
-  if (type === 'usuario') {
-    msg = `Hola ${contacto.nombre}, vengo de tu sitio web! Me creas un usuario?`;
-  } else {
-    msg = `Hola ${contacto.nombre}, me podes dar más info?`;
-  }
-
+  const msg = `Hola ${contacto.nombre}, vengo de tu sitio web! Me creas un usuario?`;
   const url = `https://wa.me/${contacto.num}?text=${encodeURIComponent(msg)}`;
   const w = window.open(url, '_blank', 'noopener,noreferrer');
   if (!w) location.href = url;
 
-  gtag('event', type === 'usuario' ? 'click_usuario' : 'click_dudas', {
+  gtag('event', 'click_usuario', {
     'whatsapp_number': contacto.num,
     'whatsapp_name': contacto.nombre
   });
 
-  if (type === 'usuario') {
-    bloquearBoton();
-    const desbloqueo = Date.now() + 180000; // 3 minutos
-    localStorage.setItem(BLOQUEO_KEY, desbloqueo);
-    setTimeout(restaurarBoton, 180000);
-  }
+  bloquearBoton();
+  const desbloqueo = Date.now() + 180000; // 3 minutos
+  localStorage.setItem(BLOQUEO_KEY, desbloqueo);
+  setTimeout(restaurarBoton, 180000);
 }
 
-BTN.addEventListener('click', () => openWhatsApp('usuario'));
-document.getElementById('btn-dudas').addEventListener('click', () => openWhatsApp('dudas'));
+BTN.addEventListener('click', openWhatsApp);
 
 // Contador aleatorio
 function actualizarContador(){
   const base = 230;
   const variacion = Math.floor(Math.random()*40);
   const total = base + variacion;
-  document.getElementById("contador").innerText = `Actualmente hay ${total} jugadores conectados       🎰🎲`;
+  document.getElementById("contador").innerText = `Actualmente hay ${total} jugadores conectados 🎰🎲`;
 }
 actualizarContador();
 setInterval(actualizarContador, 5000);
